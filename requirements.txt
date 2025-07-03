@@ -7,6 +7,7 @@ Pillow==10.0.1          # Image processing and conversion
 PyMuPDF==1.23.8         # PDF processing and conversion
 pypandoc==1.11          # Document format conversion
 python-docx==0.8.11     # Enhanced Word document support
+gunicorn==21.2.0
 
 # Additional utility libraries
 pathlib2==2.3.7.post1   # Path handling (for older Python versions)
