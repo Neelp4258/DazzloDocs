@@ -1,0 +1,24 @@
+# Core Flask dependencies
+Flask==2.3.3
+Werkzeug==2.3.7
+
+# File conversion libraries
+Pillow==10.0.1          # Image processing and conversion
+PyMuPDF==1.23.8         # PDF processing and conversion
+pypandoc==1.11          # Document format conversion
+python-docx==0.8.11     # Enhanced Word document support
+
+# Additional utility libraries
+pathlib2==2.3.7.post1   # Path handling (for older Python versions)
+
+# Optional: For better performance and additional features
+# Uncomment these if needed:
+# python-magic==0.4.27   # File type detection
+# reportlab==4.0.4       # PDF generation
+# openpyxl==3.1.2        # Excel file support
+# xlsxwriter==3.1.9      # Excel file writing
+
+# Development dependencies (optional)
+# Uncomment for development:
+# gunicorn==21.2.0       # Production WSGI server
+# python-dotenv==1.0.0   # Environment variable management

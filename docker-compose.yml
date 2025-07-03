@@ -1,0 +1,110 @@
+# docker-compose.yml
+version: '3.8'
+
+services:
+  file-converter:
+    build: .
+    ports:
+      - "5000:5000"
+    environment:
+      - FLASK_ENV=production
+      - SECRET_KEY=your-secret-key-here-change-in-production
+    volumes:
+      - ./uploads:/app/uploads
+      - ./converted:/app/converted
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+---
+
+# .env.example
+FLASK_ENV=development
+SECRET_KEY=your-secret-key-change-this-in-production
+MAX_CONTENT_LENGTH=52428800
+UPLOAD_FOLDER=uploads
+CONVERTED_FOLDER=converted
+
+---
+
+# gunicorn.conf.py
+# Production WSGI server configuration
+
+bind = "0.0.0.0:5000"
+workers = 4
+worker_class = "sync"
+worker_connections = 1000
+max_requests = 1000
+max_requests_jitter = 100
+timeout = 120
+keepalive = 5
+preload_app = True
+reload = False
+
+# Logging
+accesslog = "-"
+errorlog = "-"
+loglevel = "info"
+access_log_format = '%(h)s %(l)s %(u)s %(t)s "%(r)s" %(s)s %(b)s "%(f)s" "%(a)s" %(D)s'
+
+# Process naming
+proc_name = "file-converter"
+
+# Server mechanics
+daemon = False
+pidfile = "/tmp/gunicorn.pid"
+user = None
+group = None
+tmp_upload_dir = None
+
+# Security
+limit_request_line = 4094
+limit_request_fields = 100
+limit_request_field_size = 8190
+
+---
+
+# Procfile (for Heroku deployment)
+web: gunicorn app:app
+
+---
+
+# railway.json (for Railway deployment)
+{
+  "$schema": "https://railway.app/railway.schema.json",
+  "build": {
+    "builder": "DOCKERFILE"
+  },
+  "deploy": {
+    "startCommand": "python app.py",
+    "healthcheckPath": "/health",
+    "healthcheckTimeout": 100,
+    "restartPolicyType": "ON_FAILURE",
+    "restartPolicyMaxRetries": 10
+  }
+}
+
+---
+
+# vercel.json (for Vercel deployment)
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "app.py",
+      "use": "@vercel/python"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "app.py"
+    }
+  ],
+  "env": {
+    "FLASK_ENV": "production"
+  }
+}

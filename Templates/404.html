@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}Page Not Found - Universal File Converter{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-6">
+        <div class="card text-center">
+            <div class="card-body py-5">
+                <div class="error-animation mb-4">
+                    <i class="fas fa-search" style="font-size: 5rem; color: var(--primary-color); animation: pulse 2s infinite;"></i>
+                </div>
+                <h1 class="display-4 text-primary mb-3">404</h1>
+                <h3 class="mb-3">Page Not Found</h3>
+                <p class="lead text-muted mb-4">
+                    Oops! The page you're looking for seems to have disappeared. 
+                    It might have been moved, deleted, or you entered the wrong URL.
+                </p>
+                <div class="mb-4">
+                    <a href="{{ url_for('index') }}" class="btn btn-primary btn-lg me-3">
+                        <i class="fas fa-home me-2"></i>
+                        Go Home
+                    </a>
+                    <a href="{{ url_for('about') }}" class="btn btn-outline-primary btn-lg">
+                        <i class="fas fa-info-circle me-2"></i>
+                        Learn More
+                    </a>
+                </div>
+                <div class="suggestions">
+                    <h6 class="text-muted mb-3">You might be looking for:</h6>
+                    <div class="d-flex justify-content-center flex-wrap gap-2">
+                        <a href="{{ url_for('index') }}" class="btn btn-outline-secondary btn-sm">File Converter</a>
+                        <a href="{{ url_for('about') }}" class="btn btn-outline-secondary btn-sm">Supported Formats</a>
+                        <a href="{{ url_for('index') }}#features" class="btn btn-outline-secondary btn-sm">Features</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

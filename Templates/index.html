@@ -1,0 +1,334 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Universal File Converter{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="card">
+            <div class="card-header text-center">
+                <h2 class="mb-0">
+                    <i class="fas fa-cloud-upload-alt me-2"></i>
+                    Universal File Converter
+                </h2>
+                <p class="mb-0 mt-2 opacity-90">Convert your files instantly between different formats</p>
+            </div>
+            <div class="card-body">
+                <form id="uploadForm" method="POST" action="{{ url_for('upload_file') }}" enctype="multipart/form-data">
+                    <!-- File Upload Area -->
+                    <div class="upload-area" id="uploadArea">
+                        <div class="file-icon">
+                            <i class="fas fa-file-upload"></i>
+                        </div>
+                        <h4>Drop your file here or click to browse</h4>
+                        <p class="text-muted mb-0">Supports images, documents, PDFs and more</p>
+                        <input type="file" id="fileInput" name="file" class="d-none" accept=".jpg,.jpeg,.png,.gif,.bmp,.tiff,.webp,.ico,.pdf,.docx,.doc,.txt,.md,.html,.rtf,.csv,.json,.xml">
+                    </div>
+
+                    <!-- File Info Display -->
+                    <div id="fileInfo" class="d-none mt-3">
+                        <div class="alert alert-info">
+                            <div class="d-flex align-items-center">
+                                <i class="fas fa-file me-3 fs-3"></i>
+                                <div>
+                                    <strong id="fileName"></strong><br>
+                                    <small class="text-muted" id="fileSize"></small>
+                                </div>
+                                <button type="button" class="btn btn-sm btn-outline-secondary ms-auto" id="removeFile">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Target Format Selection -->
+                    <div class="mt-4" id="formatSelection" style="display: none;">
+                        <label for="targetFormat" class="form-label">
+                            <i class="fas fa-exchange-alt me-2"></i>
+                            Convert to:
+                        </label>
+                        <select class="form-select" id="targetFormat" name="target_format" required>
+                            <option value="">Select target format...</option>
+                        </select>
+                        <div class="form-text">Choose the format you want to convert your file to</div>
+                    </div>
+
+                    <!-- Convert Button -->
+                    <div class="text-center mt-4" id="convertSection" style="display: none;">
+                        <button type="submit" class="btn btn-primary btn-lg" id="convertBtn">
+                            <i class="fas fa-magic me-2"></i>
+                            Convert File
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Progress Bar -->
+                <div id="progressSection" class="mt-4" style="display: none;">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <span>Converting...</span>
+                        <span id="progressText">0%</span>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" style="width: 0%" id="progressBar"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Features Section -->
+        <div class="row mt-5">
+            <div class="col-md-4 mb-4">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-images"></i>
+                    </div>
+                    <h5 class="text-white">Image Conversion</h5>
+                    <p class="text-white-50 mb-0">Convert between JPG, PNG, GIF, BMP, TIFF, WebP and more</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-file-pdf"></i>
+                    </div>
+                    <h5 class="text-white">Document Processing</h5>
+                    <p class="text-white-50 mb-0">Handle PDF, Word, Markdown, HTML and text files</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h5 class="text-white">Fast & Secure</h5>
+                    <p class="text-white-50 mb-0">Quick processing with automatic file cleanup</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Loading Overlay -->
+<div id="loadingOverlay" class="loading-overlay" style="display: none;">
+    <div class="loading-spinner">
+        <div class="spinner-border text-primary mb-3" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <h5>Converting your file...</h5>
+        <p class="text-muted mb-0">This may take a few moments</p>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const uploadArea = document.getElementById('uploadArea');
+    const fileInput = document.getElementById('fileInput');
+    const fileInfo = document.getElementById('fileInfo');
+    const fileName = document.getElementById('fileName');
+    const fileSize = document.getElementById('fileSize');
+    const removeFile = document.getElementById('removeFile');
+    const formatSelection = document.getElementById('formatSelection');
+    const targetFormat = document.getElementById('targetFormat');
+    const convertSection = document.getElementById('convertSection');
+    const uploadForm = document.getElementById('uploadForm');
+    const loadingOverlay = document.getElementById('loadingOverlay');
+    const progressSection = document.getElementById('progressSection');
+
+    // File size formatter
+    function formatFileSize(bytes) {
+        if (bytes === 0) return '0 Bytes';
+        const k = 1024;
+        const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+        const i = Math.floor(Math.log(bytes) / Math.log(k));
+        return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+    }
+
+    // Upload area click handler
+    uploadArea.addEventListener('click', function() {
+        if (!fileInput.files.length) {
+            fileInput.click();
+        }
+    });
+
+    // Drag and drop handlers
+    uploadArea.addEventListener('dragover', function(e) {
+        e.preventDefault();
+        uploadArea.classList.add('dragover');
+    });
+
+    uploadArea.addEventListener('dragleave', function(e) {
+        e.preventDefault();
+        uploadArea.classList.remove('dragover');
+    });
+
+    uploadArea.addEventListener('drop', function(e) {
+        e.preventDefault();
+        uploadArea.classList.remove('dragover');
+        
+        const files = e.dataTransfer.files;
+        if (files.length > 0) {
+            fileInput.files = files;
+            handleFileSelect(files[0]);
+        }
+    });
+
+    // File input change handler
+    fileInput.addEventListener('change', function(e) {
+        if (e.target.files.length > 0) {
+            handleFileSelect(e.target.files[0]);
+        }
+    });
+
+    // Remove file handler
+    removeFile.addEventListener('click', function() {
+        resetForm();
+    });
+
+    // Handle file selection
+    function handleFileSelect(file) {
+        // Display file info
+        fileName.textContent = file.name;
+        fileSize.textContent = formatFileSize(file.size);
+        fileInfo.classList.remove('d-none');
+        
+        // Get supported formats for this file
+        fetchSupportedFormats(file.name);
+    }
+
+    // Fetch supported formats from server
+    function fetchSupportedFormats(filename) {
+        fetch(`/api/supported-formats/${encodeURIComponent(filename)}`)
+            .then(response => response.json())
+            .then(data => {
+                populateFormatOptions(data.formats);
+            })
+            .catch(error => {
+                console.error('Error fetching supported formats:', error);
+                // Show basic formats as fallback
+                populateFormatOptions(['pdf', 'jpg', 'png', 'txt']);
+            });
+    }
+
+    // Populate format selection dropdown
+    function populateFormatOptions(formats) {
+        targetFormat.innerHTML = '<option value="">Select target format...</option>';
+        
+        if (formats.length === 0) {
+            targetFormat.innerHTML += '<option value="" disabled>No supported formats found</option>';
+            return;
+        }
+
+        // Group formats by type
+        const formatGroups = {
+            'Images': ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'tiff', 'webp', 'ico'],
+            'Documents': ['pdf', 'docx', 'doc', 'txt', 'md', 'html', 'rtf'],
+            'Data': ['csv', 'json', 'xml']
+        };
+
+        for (const [groupName, groupFormats] of Object.entries(formatGroups)) {
+            const availableInGroup = formats.filter(fmt => groupFormats.includes(fmt.toLowerCase()));
+            
+            if (availableInGroup.length > 0) {
+                const optgroup = document.createElement('optgroup');
+                optgroup.label = groupName;
+                
+                availableInGroup.forEach(format => {
+                    const option = document.createElement('option');
+                    option.value = format.toLowerCase();
+                    option.textContent = format.toUpperCase();
+                    optgroup.appendChild(option);
+                });
+                
+                targetFormat.appendChild(optgroup);
+            }
+        }
+
+        formatSelection.style.display = 'block';
+    }
+
+    // Target format change handler
+    targetFormat.addEventListener('change', function() {
+        if (this.value) {
+            convertSection.style.display = 'block';
+        } else {
+            convertSection.style.display = 'none';
+        }
+    });
+
+    // Form submission handler
+    uploadForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        if (!fileInput.files.length) {
+            alert('Please select a file first.');
+            return;
+        }
+        
+        if (!targetFormat.value) {
+            alert('Please select a target format.');
+            return;
+        }
+
+        // Show loading overlay
+        loadingOverlay.style.display = 'flex';
+        
+        // Submit form
+        const formData = new FormData(uploadForm);
+        
+        fetch('/upload', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => {
+            if (response.ok) {
+                return response.text();
+            }
+            throw new Error('Conversion failed');
+        })
+        .then(html => {
+            // Replace page content with response
+            document.open();
+            document.write(html);
+            document.close();
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            loadingOverlay.style.display = 'none';
+            alert('An error occurred during conversion. Please try again.');
+        });
+    });
+
+    // Reset form
+    function resetForm() {
+        fileInput.value = '';
+        fileInfo.classList.add('d-none');
+        formatSelection.style.display = 'none';
+        convertSection.style.display = 'none';
+        targetFormat.innerHTML = '<option value="">Select target format...</option>';
+    }
+
+    // Simulate progress (since we don't have real progress tracking)
+    function simulateProgress() {
+        let progress = 0;
+        const interval = setInterval(() => {
+            progress += Math.random() * 30;
+            if (progress > 90) progress = 90;
+            
+            const progressBar = document.getElementById('progressBar');
+            const progressText = document.getElementById('progressText');
+            
+            if (progressBar && progressText) {
+                progressBar.style.width = progress + '%';
+                progressText.textContent = Math.round(progress) + '%';
+            } else {
+                clearInterval(interval);
+            }
+        }, 500);
+        
+        return interval;
+    }
+});
+</script>
+{% endblock %}
