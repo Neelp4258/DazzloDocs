@@ -1,315 +1,266 @@
 {% extends "base.html" %}
 
-{% block title %}About - Universal File Converter{% endblock %}
+{% block title %}About - DazzloDocs Converter{% endblock %}
 
 {% block content %}
-<div class="row">
-    <div class="col-lg-8 mx-auto">
-        <div class="card">
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <!-- Hero Section -->
+        <div class="card fade-in mb-5">
             <div class="card-header text-center">
-                <h2 class="mb-0">
+                <h1 class="mb-0">
                     <i class="fas fa-info-circle me-2"></i>
-                    About Universal File Converter
-                </h2>
-                <p class="mb-0 mt-2 opacity-90">Learn about our features and supported formats</p>
+                    About DazzloDocs Converter
+                </h1>
+                <p class="mb-0 mt-2 opacity-90">Professional file conversion made simple</p>
+            </div>
+            <div class="card-body text-center p-4">
+                <p class="lead">
+                    DazzloDocs Converter is a modern, web-based file conversion service that allows you to transform files between various formats with ease, security, and speed.
+                </p>
+            </div>
+        </div>
+
+        <!-- Features Section -->
+        <div class="row mb-5">
+            <div class="col-md-6 mb-4">
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h5 class="text-white mb-3">Lightning Fast</h5>
+                    <p class="text-white-50 mb-0">Convert files in seconds with our optimized processing engine</p>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4">
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h5 class="text-white mb-3">Secure & Private</h5>
+                    <p class="text-white-50 mb-0">Your files are automatically deleted after 1 hour for your privacy</p>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4">
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h5 class="text-white mb-3">Mobile Friendly</h5>
+                    <p class="text-white-50 mb-0">Works perfectly on desktop, tablet, and mobile devices</p>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4">
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <h5 class="text-white mb-3">No Installation</h5>
+                    <p class="text-white-50 mb-0">Use directly in your browser - no software installation required</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Supported Formats -->
+        <div class="card fade-in mb-5">
+            <div class="card-header">
+                <h3 class="mb-0">
+                    <i class="fas fa-list me-2"></i>
+                    Supported File Formats
+                </h3>
             </div>
             <div class="card-body">
-                <!-- Introduction -->
-                <section class="mb-5">
-                    <div class="text-center mb-4">
-                        <i class="fas fa-exchange-alt" style="font-size: 4rem; color: var(--primary-color);"></i>
-                    </div>
-                    <h3 class="text-center mb-4">Powerful File Conversion Made Simple</h3>
-                    <p class="lead text-center">
-                        Our Universal File Converter is a modern, web-based solution that makes converting files between different formats quick, easy, and secure. Whether you need to convert images, documents, or data files, we've got you covered.
-                    </p>
-                </section>
-
-                <!-- Features -->
-                <section class="mb-5">
-                    <h3 class="mb-4">
-                        <i class="fas fa-star me-2 text-warning"></i>
-                        Key Features
-                    </h3>
-                    <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <div class="feature-item">
-                                <i class="fas fa-bolt text-primary me-3"></i>
-                                <div>
-                                    <strong>Lightning Fast</strong>
-                                    <p class="mb-0 text-muted">High-performance conversion engine processes files quickly</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <div class="feature-item">
-                                <i class="fas fa-shield-alt text-success me-3"></i>
-                                <div>
-                                    <strong>Secure & Private</strong>
-                                    <p class="mb-0 text-muted">Files are automatically deleted after 1 hour</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <div class="feature-item">
-                                <i class="fas fa-mobile-alt text-info me-3"></i>
-                                <div>
-                                    <strong>Mobile Friendly</strong>
-                                    <p class="mb-0 text-muted">Works perfectly on desktop, tablet, and mobile devices</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <div class="feature-item">
-                                <i class="fas fa-cloud text-purple me-3"></i>
-                                <div>
-                                    <strong>No Software Required</strong>
-                                    <p class="mb-0 text-muted">Everything runs in your browser, no downloads needed</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <div class="feature-item">
-                                <i class="fas fa-file-upload text-warning me-3"></i>
-                                <div>
-                                    <strong>Drag & Drop</strong>
-                                    <p class="mb-0 text-muted">Simple drag and drop interface for easy file uploading</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <div class="feature-item">
-                                <i class="fas fa-hd-video text-danger me-3"></i>
-                                <div>
-                                    <strong>High Quality</strong>
-                                    <p class="mb-0 text-muted">Maintains original quality during conversion process</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Supported Formats -->
-                <section class="mb-5">
-                    <h3 class="mb-4">
-                        <i class="fas fa-list me-2 text-info"></i>
-                        Supported File Formats
-                    </h3>
-                    
-                    {% for category, format_list in formats.items() %}
-                    <div class="format-category mb-4">
-                        <h5 class="category-title">
-                            <i class="fas fa-{{ 'images' if category == 'Images' else 'file-alt' if category == 'Documents' else 'database' }} me-2"></i>
-                            {{ category }}
+                <div class="row">
+                    <div class="col-md-4 mb-4">
+                        <h5 class="text-primary mb-3">
+                            <i class="fas fa-images me-2"></i>
+                            Images
                         </h5>
-                        <div class="format-badges">
-                            {% for format in format_list %}
-                            <span class="file-type-badge">{{ format }}</span>
-                            {% endfor %}
-                        </div>
-                    </div>
-                    {% endfor %}
-                </section>
-
-                <!-- How It Works -->
-                <section class="mb-5">
-                    <h3 class="mb-4">
-                        <i class="fas fa-cogs me-2 text-success"></i>
-                        How It Works
-                    </h3>
-                    <div class="row">
-                        <div class="col-md-4 text-center mb-4">
-                            <div class="step-card">
-                                <div class="step-number">1</div>
-                                <i class="fas fa-upload step-icon"></i>
-                                <h5>Upload File</h5>
-                                <p class="text-muted">Select or drag & drop your file</p>
-                            </div>
-                        </div>
-                        <div class="col-md-4 text-center mb-4">
-                            <div class="step-card">
-                                <div class="step-number">2</div>
-                                <i class="fas fa-exchange-alt step-icon"></i>
-                                <h5>Choose Format</h5>
-                                <p class="text-muted">Select your desired output format</p>
-                            </div>
-                        </div>
-                        <div class="col-md-4 text-center mb-4">
-                            <div class="step-card">
-                                <div class="step-number">3</div>
-                                <i class="fas fa-download step-icon"></i>
-                                <h5>Download</h5>
-                                <p class="text-muted">Get your converted file instantly</p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Technical Details -->
-                <section class="mb-5">
-                    <h3 class="mb-4">
-                        <i class="fas fa-code me-2 text-purple"></i>
-                        Technical Information
-                    </h3>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="tech-card">
-                                <h6>Image Processing</h6>
-                                <ul class="list-unstyled">
-                                    <li><i class="fas fa-check text-success me-2"></i>PIL (Python Imaging Library)</li>
-                                    <li><i class="fas fa-check text-success me-2"></i>High-quality resampling</li>
-                                    <li><i class="fas fa-check text-success me-2"></i>Color space conversion</li>
-                                    <li><i class="fas fa-check text-success me-2"></i>Transparency handling</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="tech-card">
-                                <h6>Document Processing</h6>
-                                <ul class="list-unstyled">
-                                    <li><i class="fas fa-check text-success me-2"></i>Pandoc universal converter</li>
-                                    <li><i class="fas fa-check text-success me-2"></i>PyMuPDF for PDF handling</li>
-                                    <li><i class="fas fa-check text-success me-2"></i>LibreOffice integration</li>
-                                    <li><i class="fas fa-check text-success me-2"></i>Metadata preservation</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Privacy & Security -->
-                <section class="mb-5">
-                    <h3 class="mb-4">
-                        <i class="fas fa-lock me-2 text-danger"></i>
-                        Privacy & Security
-                    </h3>
-                    <div class="alert alert-info">
-                        <h6><i class="fas fa-shield-alt me-2"></i>Your Privacy Matters</h6>
-                        <ul class="mb-0">
-                            <li>Files are processed locally on our servers</li>
-                            <li>No data is stored permanently</li>
-                            <li>Automatic file deletion after 1 hour</li>
-                            <li>No tracking or analytics on file content</li>
-                            <li>Secure HTTPS encryption for all transfers</li>
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-check text-success me-2"></i>JPG / JPEG</li>
+                            <li><i class="fas fa-check text-success me-2"></i>PNG</li>
+                            <li><i class="fas fa-check text-success me-2"></i>GIF</li>
+                            <li><i class="fas fa-check text-success me-2"></i>BMP</li>
+                            <li><i class="fas fa-check text-success me-2"></i>TIFF</li>
+                            <li><i class="fas fa-check text-success me-2"></i>WebP</li>
+                            <li><i class="fas fa-check text-success me-2"></i>ICO</li>
                         </ul>
                     </div>
-                </section>
-
-                <!-- Limitations -->
-                <section class="mb-5">
-                    <h3 class="mb-4">
-                        <i class="fas fa-exclamation-triangle me-2 text-warning"></i>
-                        Current Limitations
-                    </h3>
-                    <div class="alert alert-warning">
-                        <ul class="mb-0">
-                            <li>Maximum file size: 50MB</li>
-                            <li>PDF conversion limited to first page for image output</li>
-                            <li>Some complex document formatting may not be preserved</li>
-                            <li>Video and audio formats not yet supported</li>
+                    <div class="col-md-4 mb-4">
+                        <h5 class="text-primary mb-3">
+                            <i class="fas fa-file-pdf me-2"></i>
+                            Documents
+                        </h5>
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-check text-success me-2"></i>PDF</li>
+                            <li><i class="fas fa-check text-success me-2"></i>DOCX</li>
+                            <li><i class="fas fa-check text-success me-2"></i>DOC</li>
+                            <li><i class="fas fa-check text-success me-2"></i>TXT</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Markdown</li>
+                            <li><i class="fas fa-check text-success me-2"></i>HTML</li>
+                            <li><i class="fas fa-check text-success me-2"></i>RTF</li>
                         </ul>
                     </div>
-                </section>
+                    <div class="col-md-4 mb-4">
+                        <h5 class="text-primary mb-3">
+                            <i class="fas fa-database me-2"></i>
+                            Data Files
+                        </h5>
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-check text-success me-2"></i>CSV</li>
+                            <li><i class="fas fa-check text-success me-2"></i>JSON</li>
+                            <li><i class="fas fa-check text-success me-2"></i>XML</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-                <!-- Call to Action -->
-                <section class="text-center">
-                    <h3 class="mb-3">Ready to Convert Your Files?</h3>
-                    <p class="mb-4">Start converting your files now with our easy-to-use interface.</p>
-                    <a href="{{ url_for('index') }}" class="btn btn-primary btn-lg">
-                        <i class="fas fa-rocket me-2"></i>
-                        Start Converting
-                    </a>
-                </section>
+        <!-- Technology Stack -->
+        <div class="card fade-in mb-5">
+            <div class="card-header">
+                <h3 class="mb-0">
+                    <i class="fas fa-cogs me-2"></i>
+                    Technology Stack
+                </h3>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                        <h6 class="text-primary mb-3">Backend</h6>
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-code text-info me-2"></i>Python 3.8+</li>
+                            <li><i class="fas fa-code text-info me-2"></i>Flask Framework</li>
+                            <li><i class="fas fa-code text-info me-2"></i>Pillow (PIL)</li>
+                            <li><i class="fas fa-code text-info me-2"></i>PyMuPDF</li>
+                            <li><i class="fas fa-code text-info me-2"></i>ReportLab</li>
+                            <li><i class="fas fa-code text-info me-2"></i>LibreOffice</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <h6 class="text-primary mb-3">Frontend</h6>
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-code text-info me-2"></i>HTML5 & CSS3</li>
+                            <li><i class="fas fa-code text-info me-2"></i>Bootstrap 5</li>
+                            <li><i class="fas fa-code text-info me-2"></i>JavaScript (ES6+)</li>
+                            <li><i class="fas fa-code text-info me-2"></i>Font Awesome</li>
+                            <li><i class="fas fa-code text-info me-2"></i>Responsive Design</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- How It Works -->
+        <div class="card fade-in mb-5">
+            <div class="card-header">
+                <h3 class="mb-0">
+                    <i class="fas fa-play-circle me-2"></i>
+                    How It Works
+                </h3>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-3 text-center mb-4">
+                        <div class="step-number mb-3">1</div>
+                        <h6 class="fw-semibold">Upload</h6>
+                        <p class="text-muted small">Drag & drop or select your file from your device</p>
+                    </div>
+                    <div class="col-md-3 text-center mb-4">
+                        <div class="step-number mb-3">2</div>
+                        <h6 class="fw-semibold">Select Format</h6>
+                        <p class="text-muted small">Choose your desired output format from the dropdown</p>
+                    </div>
+                    <div class="col-md-3 text-center mb-4">
+                        <div class="step-number mb-3">3</div>
+                        <h6 class="fw-semibold">Convert</h6>
+                        <p class="text-muted small">Our system processes your file with advanced algorithms</p>
+                    </div>
+                    <div class="col-md-3 text-center mb-4">
+                        <div class="step-number mb-3">4</div>
+                        <h6 class="fw-semibold">Download</h6>
+                        <p class="text-muted small">Get your converted file instantly and securely</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Section -->
+        <div class="card fade-in">
+            <div class="card-header">
+                <h3 class="mb-0">
+                    <i class="fas fa-envelope me-2"></i>
+                    Get in Touch
+                </h3>
+            </div>
+            <div class="card-body text-center">
+                <p class="lead mb-4">
+                    Have questions or suggestions? We'd love to hear from you!
+                </p>
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope fa-2x text-primary mb-2"></i>
+                            <h6>Email</h6>
+                            <p class="text-muted">support@dazzlodocs.com</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="contact-item">
+                            <i class="fas fa-globe fa-2x text-primary mb-2"></i>
+                            <h6>Website</h6>
+                            <p class="text-muted">www.dazzlodocs.com</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="contact-item">
+                            <i class="fas fa-heart fa-2x text-primary mb-2"></i>
+                            <h6>Support</h6>
+                            <p class="text-muted">24/7 Available</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
 <style>
-.feature-item {
-    display: flex;
-    align-items: flex-start;
-    padding: 1rem;
-    border-radius: 8px;
-    transition: all 0.3s ease;
-}
-
-.feature-item:hover {
-    background: rgba(102, 126, 234, 0.05);
-    transform: translateX(5px);
-}
-
-.format-category {
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 12px;
-    padding: 1.5rem;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.category-title {
-    color: var(--primary-color);
-    margin-bottom: 1rem;
-}
-
-.format-badges {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-}
-
-.step-card {
-    position: relative;
-    padding: 2rem 1rem;
-    border-radius: 16px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    transition: all 0.3s ease;
-}
-
-.step-card:hover {
-    transform: translateY(-5px);
-    background: rgba(255, 255, 255, 0.1);
-}
-
 .step-number {
-    position: absolute;
-    top: -15px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 30px;
-    height: 30px;
-    background: var(--gradient-primary);
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
+    font-size: 1.5rem;
     font-weight: bold;
-    font-size: 0.9rem;
+    margin: 0 auto;
 }
 
-.step-icon {
-    font-size: 2.5rem;
-    color: var(--primary-color);
-    margin: 1rem 0;
-}
-
-.tech-card {
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 12px;
+.contact-item {
     padding: 1.5rem;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: var(--border-radius);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: var(--transition);
 }
 
-.tech-card h6 {
-    color: var(--primary-color);
-    margin-bottom: 1rem;
-    font-weight: 600;
+.contact-item:hover {
+    transform: translateY(-3px);
+    background: rgba(255, 255, 255, 0.15);
 }
 
-.text-purple {
-    color: #8b5cf6 !important;
+.contact-item h6 {
+    margin-bottom: 0.5rem;
+    color: var(--dark-color);
+}
+
+.contact-item p {
+    margin-bottom: 0;
 }
 </style>
 {% endblock %}

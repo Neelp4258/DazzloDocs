@@ -2,24 +2,40 @@
 Flask==2.3.3
 Werkzeug==2.3.7
 
-# File conversion libraries
-Pillow==10.0.1          # Image processing and conversion
-PyMuPDF==1.23.8         # PDF processing and conversion
-pypandoc==1.11          # Document format conversion
-python-docx==0.8.11     # Enhanced Word document support
-gunicorn==21.2.0
+# Core file conversion libraries
+Pillow>=10.0.0
+PyMuPDF>=1.23.0
+reportlab>=4.0.0
+python-docx>=0.8.11
 
 # Additional utility libraries
-pathlib2==2.3.7.post1   # Path handling (for older Python versions)
+pathlib2>=2.3.7
+click>=8.1.0
+colorama>=0.4.6
+tqdm>=4.65.0
 
-# Optional: For better performance and additional features
-# Uncomment these if needed:
-# python-magic==0.4.27   # File type detection
-# reportlab==4.0.4       # PDF generation
-# openpyxl==3.1.2        # Excel file support
-# xlsxwriter==3.1.9      # Excel file writing
+# Optional: Enhanced libraries (install separately if needed)
+# openpyxl>=3.1.0
+# python-pptx>=0.6.21
+# python-magic>=0.4.27
+# chardet>=5.0.0
+# lxml>=4.9.0
+# beautifulsoup4>=4.12.0
+# markdown>=3.4.0
+# jinja2>=3.1.0
+# PyPDF2>=3.0.0
+# pdf2image>=1.16.0
+# img2pdf>=0.4.0
+# cairosvg>=2.7.0
+# svgwrite>=1.4.0
+# python-barcode>=0.14.0
+# qrcode>=7.4.0
+# pypandoc>=1.11
 
-# Development dependencies (optional)
-# Uncomment for development:
-# gunicorn==21.2.0       # Production WSGI server
-# python-dotenv==1.0.0   # Environment variable management
+# SVG support libraries
+# Note: cairosvg requires Cairo graphics library to be installed on the system
+# On Windows: Install GTK+ or use alternative methods
+# On Linux: sudo apt-get install libcairo2-dev (Ubuntu/Debian)
+# On macOS: brew install cairo
+cairosvg>=2.7.0
+svglib>=1.5.1

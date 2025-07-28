@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Quick Start Script for Universal File Converter
+DazzloDocs Converter - Quick Start Script
 This script sets up and runs the application with proper configuration.
 """
 
@@ -105,102 +105,77 @@ def check_template_files():
             missing_templates.append(template)
     
     if missing_templates:
-        print("❌ Missing template files:")
-        for template in missing_templates:
-            print(f"   - {template}")
-        print("\n💡 Make sure all template files are in the templates/ directory")
-        return False
-    
-    print("✅ All template files found")
-    return True
+        print(f"⚠️  Missing templates: {', '.join(missing_templates)}")
+        print("💡 Make sure all template files are present")
+    else:
+        print("✅ All template files found")
 
 def set_environment():
     """Set environment variables."""
-    print("\n🔧 Setting up environment...")
+    print("\n⚙️  Setting environment variables...")
     
-    # Set Flask environment variables
-    os.environ['FLASK_APP'] = 'app.py'
-    os.environ['FLASK_ENV'] = 'development'
+    # Set default environment variables
+    env_vars = {
+        'FLASK_ENV': 'development',
+        'SECRET_KEY': 'dev-secret-key-change-this-in-production',
+        'MAX_CONTENT_LENGTH': '52428800',  # 50MB
+        'UPLOAD_FOLDER': 'uploads',
+        'CONVERTED_FOLDER': 'converted'
+    }
     
-    # Create .env file if it doesn't exist
-    env_file = Path('.env')
-    if not env_file.exists():
-        env_content = """# Environment Configuration
-FLASK_ENV=development
-SECRET_KEY=dev-secret-key-change-in-production
-MAX_CONTENT_LENGTH=52428800
-UPLOAD_FOLDER=uploads
-CONVERTED_FOLDER=converted
-"""
-        env_file.write_text(env_content)
-        print("✅ Created .env file")
-    else:
-        print("✅ .env file exists")
+    for key, value in env_vars.items():
+        if key not in os.environ:
+            os.environ[key] = value
+            print(f"✅ Set {key}={value}")
+    
+    print("✅ Environment variables configured")
 
 def run_application():
     """Run the Flask application."""
-    print("\n🚀 Starting Universal File Converter...")
-    print("🌐 Server will be available at: http://localhost:5000")
-    print("📝 Press Ctrl+C to stop the server")
+    print("\n🚀 Starting DazzloDocs Converter...")
+    print("📍 Application will be available at: http://localhost:5000")
+    print("🛑 Press Ctrl+C to stop the application")
     print("-" * 50)
     
     try:
         # Import and run the app
         from app import app
-        app.run(debug=True, host='0.0.0.0', port=5000)
-    except ImportError:
-        print("❌ Could not import the Flask app")
-        print("💡 Make sure app.py exists in the current directory")
-        sys.exit(1)
+        app.run(
+            host='0.0.0.0',
+            port=int(os.environ.get('PORT', 5000)),
+            debug=True
+        )
     except KeyboardInterrupt:
-        print("\n👋 Server stopped by user")
+        print("\n👋 Application stopped by user")
     except Exception as e:
-        print(f"❌ Error starting server: {e}")
+        print(f"❌ Error starting application: {e}")
         sys.exit(1)
 
 def main():
-    """Main function to set up and run the application."""
-    print("🔄 Universal File Converter - Quick Start")
+    """Main function."""
+    print("🎉 Welcome to DazzloDocs Converter!")
     print("=" * 50)
     
     # Check Python version
     check_python_version()
     
-    # Check if we're in the right directory
-    if not Path('app.py').exists():
-        print("❌ app.py not found in current directory")
-        print("💡 Make sure you're in the project root directory")
-        sys.exit(1)
-    
-    # Install Python dependencies
+    # Install requirements
     install_requirements()
+    
+    # Check system dependencies
+    check_system_dependencies()
     
     # Create directories
     create_directories()
     
     # Check template files
-    if not check_template_files():
-        sys.exit(1)
+    check_template_files()
     
-    # Set up environment
+    # Set environment
     set_environment()
     
-    # Check system dependencies
-    check_system_dependencies()
-    
-    print("\n" + "=" * 50)
-    print("✅ Setup complete!")
-    
-    # Ask user if they want to start the server
-    try:
-        start_server = input("\n🚀 Start the server now? (y/n): ").lower().strip()
-        if start_server in ['y', 'yes', '']:
-            run_application()
-        else:
-            print("\n💡 To start the server later, run: python app.py")
-            print("🌐 Server will be available at: http://localhost:5000")
-    except KeyboardInterrupt:
-        print("\n👋 Setup cancelled by user")
+    # Run application
+    run_application()
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

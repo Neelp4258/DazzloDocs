@@ -1,61 +1,153 @@
 {% extends "base.html" %}
 
-{% block title %}Home - Universal File Converter{% endblock %}
+{% block title %}Professional File Conversion - DazzloDocs Converter{% endblock %}
 
 {% block content %}
-<div class="row justify-content-center">
-    <div class="col-lg-8">
-        <div class="card">
+<!-- Hero Section -->
+<div class="hero-section text-center mb-5 fade-in">
+    <div class="container">
+        <h1 class="section-title display-4 mb-4">
+            <span class="text-gradient">Professional</span> File Conversion
+        </h1>
+        <p class="section-subtitle lead mb-5">
+            Transform your documents with enterprise-grade precision and elegant simplicity
+        </p>
+        
+        <!-- Hero Stats -->
+        <div class="row justify-content-center mb-5">
+            <div class="col-md-3 col-6 mb-3">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <h3 class="gold-accent">50+</h3>
+                    <p class="text-muted">Supported Formats</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-6 mb-3">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="gold-accent">100%</h3>
+                    <p class="text-muted">Secure & Private</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-6 mb-3">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3 class="gold-accent">⚡</h3>
+                    <p class="text-muted">Lightning Fast</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-6 mb-3">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-crown"></i>
+                    </div>
+                    <h3 class="gold-accent">Premium</h3>
+                    <p class="text-muted">Quality Output</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Main Converter Card -->
+<div class="row justify-content-center mb-5">
+    <div class="col-lg-10">
+        <div class="card converter-card slide-up">
             <div class="card-header text-center">
                 <h2 class="mb-0">
                     <i class="fas fa-cloud-upload-alt me-2"></i>
                     Universal File Converter
                 </h2>
-                <p class="mb-0 mt-2 opacity-90">Convert your files instantly between different formats</p>
+                <p class="mb-0 mt-2 opacity-90">Drag & drop or click to upload your file</p>
             </div>
-            <div class="card-body">
+            <div class="card-body p-5">
                 <form id="uploadForm" method="POST" action="{{ url_for('upload_file') }}" enctype="multipart/form-data">
                     <!-- File Upload Area -->
                     <div class="upload-area" id="uploadArea">
                         <div class="file-icon">
                             <i class="fas fa-file-upload"></i>
                         </div>
-                        <h4>Drop your file here or click to browse</h4>
-                        <p class="text-muted mb-0">Supports images, documents, PDFs and more</p>
-                        <input type="file" id="fileInput" name="file" class="d-none" accept=".jpg,.jpeg,.png,.gif,.bmp,.tiff,.webp,.ico,.pdf,.docx,.doc,.txt,.md,.html,.rtf,.csv,.json,.xml">
+                        <h4 class="mb-3">Drop your file here or click to browse</h4>
+                        <p class="text-muted mb-4">Supports images, documents, spreadsheets, presentations, and more</p>
+                        <div class="supported-formats mb-4">
+                            <span class="format-chip">Images</span>
+                            <span class="format-chip">Documents</span>
+                            <span class="format-chip">Spreadsheets</span>
+                            <span class="format-chip">Presentations</span>
+                            <span class="format-chip">Data Files</span>
+                        </div>
+                        <input type="file" id="fileInput" name="file" class="d-none" accept=".jpg,.jpeg,.png,.gif,.bmp,.tiff,.webp,.ico,.svg,.pdf,.docx,.doc,.txt,.md,.html,.rtf,.xlsx,.xls,.csv,.pptx,.ppt,.json,.xml">
                     </div>
 
                     <!-- File Info Display -->
-                    <div id="fileInfo" class="d-none mt-3">
+                    <div id="fileInfo" class="d-none mt-4">
                         <div class="alert alert-info">
                             <div class="d-flex align-items-center">
                                 <i class="fas fa-file me-3 fs-3"></i>
-                                <div>
+                                <div class="flex-grow-1">
                                     <strong id="fileName"></strong><br>
                                     <small class="text-muted" id="fileSize"></small>
                                 </div>
-                                <button type="button" class="btn btn-sm btn-outline-secondary ms-auto" id="removeFile">
+                                <button type="button" class="btn btn-sm btn-outline-secondary" id="removeFile">
                                     <i class="fas fa-times"></i>
                                 </button>
                             </div>
                         </div>
                     </div>
 
+                    <!-- Advanced Options -->
+                    <div class="mt-4" id="advancedOptions" style="display: none;">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="imageQuality" class="form-label fw-semibold">
+                                    <i class="fas fa-cog me-2"></i>
+                                    Image Quality:
+                                </label>
+                                <select class="form-select" id="imageQuality" name="image_quality">
+                                    <option value="95">High Quality (95%)</option>
+                                    <option value="85" selected>Standard Quality (85%)</option>
+                                    <option value="75">Compressed (75%)</option>
+                                    <option value="60">Low Quality (60%)</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="pdfResolution" class="form-label fw-semibold">
+                                    <i class="fas fa-expand me-2"></i>
+                                    PDF Resolution:
+                                </label>
+                                <select class="form-select" id="pdfResolution" name="pdf_resolution">
+                                    <option value="150">Standard (150 DPI)</option>
+                                    <option value="300" selected>High Quality (300 DPI)</option>
+                                    <option value="600">Ultra High (600 DPI)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
                     <!-- Target Format Selection -->
                     <div class="mt-4" id="formatSelection" style="display: none;">
-                        <label for="targetFormat" class="form-label">
+                        <label for="targetFormat" class="form-label fw-semibold">
                             <i class="fas fa-exchange-alt me-2"></i>
                             Convert to:
                         </label>
                         <select class="form-select" id="targetFormat" name="target_format" required>
                             <option value="">Select target format...</option>
                         </select>
-                        <div class="form-text">Choose the format you want to convert your file to</div>
+                        <div class="form-text">
+                            <i class="fas fa-info-circle me-1"></i>
+                            Choose the format you want to convert your file to
+                        </div>
                     </div>
 
                     <!-- Convert Button -->
-                    <div class="text-center mt-4" id="convertSection" style="display: none;">
-                        <button type="submit" class="btn btn-primary btn-lg" id="convertBtn">
+                    <div class="text-center mt-5" id="convertSection" style="display: none;">
+                        <button type="submit" class="btn btn-primary btn-lg px-5" id="convertBtn">
                             <i class="fas fa-magic me-2"></i>
                             Convert File
                         </button>
@@ -65,8 +157,8 @@
                 <!-- Progress Bar -->
                 <div id="progressSection" class="mt-4" style="display: none;">
                     <div class="d-flex justify-content-between align-items-center mb-2">
-                        <span>Converting...</span>
-                        <span id="progressText">0%</span>
+                        <span class="fw-semibold">Converting...</span>
+                        <span id="progressText" class="fw-semibold">0%</span>
                     </div>
                     <div class="progress">
                         <div class="progress-bar" role="progressbar" style="width: 0%" id="progressBar"></div>
@@ -74,53 +166,406 @@
                 </div>
             </div>
         </div>
+    </div>
+</div>
 
-        <!-- Features Section -->
-        <div class="row mt-5">
-            <div class="col-md-4 mb-4">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-images"></i>
-                    </div>
-                    <h5 class="text-white">Image Conversion</h5>
-                    <p class="text-white-50 mb-0">Convert between JPG, PNG, GIF, BMP, TIFF, WebP and more</p>
-                </div>
+<!-- Features Section -->
+<div class="row mb-5" id="features">
+    <div class="col-12">
+        <h2 class="section-title mb-5">Why Choose DazzloDocs?</h2>
+    </div>
+    
+    <div class="col-md-4 mb-4">
+        <div class="feature-card bounce-in">
+            <div class="feature-icon">
+                <i class="fas fa-rocket"></i>
             </div>
-            <div class="col-md-4 mb-4">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-file-pdf"></i>
-                    </div>
-                    <h5 class="text-white">Document Processing</h5>
-                    <p class="text-white-50 mb-0">Handle PDF, Word, Markdown, HTML and text files</p>
-                </div>
+            <h5 class="mb-3">Lightning Fast</h5>
+            <p class="text-muted mb-0">Advanced algorithms ensure quick conversion with optimal quality and precision.</p>
+        </div>
+    </div>
+    
+    <div class="col-md-4 mb-4">
+        <div class="feature-card bounce-in">
+            <div class="feature-icon">
+                <i class="fas fa-shield-alt"></i>
             </div>
-            <div class="col-md-4 mb-4">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-bolt"></i>
+            <h5 class="mb-3">Enterprise Security</h5>
+            <p class="text-muted mb-0">Your files are automatically encrypted and deleted after processing for maximum privacy.</p>
+        </div>
+    </div>
+    
+    <div class="col-md-4 mb-4">
+        <div class="feature-card bounce-in">
+            <div class="feature-icon">
+                <i class="fas fa-cogs"></i>
+            </div>
+            <h5 class="mb-3">Advanced Options</h5>
+            <p class="text-muted mb-0">Customize quality, resolution, and compression settings for professional results.</p>
+        </div>
+    </div>
+</div>
+
+<!-- Format Categories -->
+<div class="row mb-5">
+    <div class="col-12">
+        <h2 class="section-title mb-5">Supported Format Categories</h2>
+    </div>
+    
+    <div class="col-md-4 mb-4">
+        <div class="format-category-card">
+            <div class="category-icon">
+                <i class="fas fa-images"></i>
+            </div>
+            <h5 class="mb-3">Image Formats</h5>
+            <div class="format-list">
+                <span class="format-badge">JPG</span>
+                <span class="format-badge">PNG</span>
+                <span class="format-badge">GIF</span>
+                <span class="format-badge">BMP</span>
+                <span class="format-badge">TIFF</span>
+                <span class="format-badge">WebP</span>
+                <span class="format-badge">ICO</span>
+                <span class="format-badge">SVG</span>
+            </div>
+            <p class="text-muted mt-3">High-quality image conversion with advanced compression options</p>
+        </div>
+    </div>
+    
+    <div class="col-md-4 mb-4">
+        <div class="format-category-card">
+            <div class="category-icon">
+                <i class="fas fa-file-pdf"></i>
+            </div>
+            <h5 class="mb-3">Document Formats</h5>
+            <div class="format-list">
+                <span class="format-badge">PDF</span>
+                <span class="format-badge">DOCX</span>
+                <span class="format-badge">DOC</span>
+                <span class="format-badge">TXT</span>
+                <span class="format-badge">MD</span>
+                <span class="format-badge">HTML</span>
+                <span class="format-badge">RTF</span>
+            </div>
+            <p class="text-muted mt-3">Professional document processing with formatting preservation</p>
+        </div>
+    </div>
+    
+    <div class="col-md-4 mb-4">
+        <div class="format-category-card">
+            <div class="category-icon">
+                <i class="fas fa-table"></i>
+            </div>
+            <h5 class="mb-3">Spreadsheet Formats</h5>
+            <div class="format-list">
+                <span class="format-badge">XLSX</span>
+                <span class="format-badge">XLS</span>
+                <span class="format-badge">CSV</span>
+                <span class="format-badge">JSON</span>
+                <span class="format-badge">XML</span>
+            </div>
+            <p class="text-muted mt-3">Data conversion with structure preservation and validation</p>
+        </div>
+    </div>
+</div>
+
+<!-- How It Works -->
+<div class="row justify-content-center mb-5">
+    <div class="col-lg-10">
+        <div class="card slide-up">
+            <div class="card-header">
+                <h3 class="mb-0">
+                    <i class="fas fa-play-circle me-2"></i>
+                    How It Works
+                </h3>
+            </div>
+            <div class="card-body p-5">
+                <div class="row">
+                    <div class="col-md-3 text-center mb-4">
+                        <div class="step-icon mb-3">
+                            <i class="fas fa-upload fa-2x gold-accent"></i>
+                        </div>
+                        <h6 class="fw-semibold">1. Upload</h6>
+                        <p class="text-muted small">Drag & drop or select your file securely</p>
                     </div>
-                    <h5 class="text-white">Fast & Secure</h5>
-                    <p class="text-white-50 mb-0">Quick processing with automatic file cleanup</p>
+                    <div class="col-md-3 text-center mb-4">
+                        <div class="step-icon mb-3">
+                            <i class="fas fa-cog fa-2x gold-accent"></i>
+                        </div>
+                        <h6 class="fw-semibold">2. Choose Format</h6>
+                        <p class="text-muted small">Select your desired output format</p>
+                    </div>
+                    <div class="col-md-3 text-center mb-4">
+                        <div class="step-icon mb-3">
+                            <i class="fas fa-magic fa-2x gold-accent"></i>
+                        </div>
+                        <h6 class="fw-semibold">3. Convert</h6>
+                        <p class="text-muted small">Our advanced system processes your file</p>
+                    </div>
+                    <div class="col-md-3 text-center mb-4">
+                        <div class="step-icon mb-3">
+                            <i class="fas fa-download fa-2x gold-accent"></i>
+                        </div>
+                        <h6 class="fw-semibold">4. Download</h6>
+                        <p class="text-muted small">Get your converted file instantly</p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<!-- Loading Overlay -->
-<div id="loadingOverlay" class="loading-overlay" style="display: none;">
-    <div class="loading-spinner">
-        <div class="spinner-border text-primary mb-3" role="status">
-            <span class="visually-hidden">Loading...</span>
-        </div>
-        <h5>Converting your file...</h5>
-        <p class="text-muted mb-0">This may take a few moments</p>
-    </div>
-</div>
-{% endblock %}
+<style>
+.hero-section {
+    background: linear-gradient(135deg, var(--cream-light) 0%, var(--cream-medium) 100%);
+    padding: 4rem 0;
+    border-radius: var(--border-radius);
+    margin-bottom: 3rem;
+    border: 2px solid rgba(212, 175, 55, 0.1);
+}
 
-{% block scripts %}
+.stat-card {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(253, 248, 240, 0.9));
+    border-radius: var(--border-radius);
+    padding: 2rem 1.5rem;
+    text-align: center;
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    transition: var(--transition);
+    box-shadow: var(--box-shadow);
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(212, 175, 55, 0.2);
+    border-color: var(--primary-gold);
+}
+
+.stat-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--primary-gold), var(--secondary-gold));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+    font-size: 1.5rem;
+    color: white;
+    box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
+}
+
+.converter-card {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(253, 248, 240, 0.95));
+    backdrop-filter: blur(20px);
+    border: 2px solid rgba(212, 175, 55, 0.1);
+    box-shadow: 0 20px 40px rgba(212, 175, 55, 0.15);
+}
+
+.format-category-card {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(253, 248, 240, 0.9));
+    backdrop-filter: blur(20px);
+    border-radius: var(--border-radius);
+    padding: 2.5rem;
+    text-align: center;
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    transition: var(--transition);
+    box-shadow: var(--box-shadow);
+    height: 100%;
+}
+
+.format-category-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(212, 175, 55, 0.2);
+    border-color: var(--primary-gold);
+}
+
+.category-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, var(--primary-gold), var(--secondary-gold));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    font-size: 2rem;
+    color: white;
+    box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
+}
+
+.format-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.format-badge {
+    background: linear-gradient(135deg, var(--primary-gold), var(--secondary-gold));
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    box-shadow: 0 4px 8px rgba(212, 175, 55, 0.2);
+}
+
+.format-chip {
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(184, 134, 11, 0.1));
+    color: var(--primary-gold);
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    margin: 0.25rem;
+}
+
+.step-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(184, 134, 11, 0.1));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    border: 2px solid rgba(212, 175, 55, 0.2);
+}
+
+.upload-area {
+    border: 3px dashed var(--primary-gold);
+    border-radius: var(--border-radius);
+    padding: 4rem 2rem;
+    text-align: center;
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.05), rgba(184, 134, 11, 0.05));
+    transition: var(--transition);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.upload-area:hover {
+    border-color: var(--secondary-gold);
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(184, 134, 11, 0.1));
+    transform: scale(1.02);
+}
+
+.upload-area.dragover {
+    border-color: var(--success-color);
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(5, 150, 105, 0.1));
+    transform: scale(1.03);
+}
+
+.file-icon {
+    font-size: 4.5rem;
+    color: var(--primary-gold);
+    margin-bottom: 1.5rem;
+    text-shadow: 0 4px 8px rgba(212, 175, 55, 0.3);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .hero-section {
+        padding: 2rem 0;
+    }
+    
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .stat-card {
+        padding: 1.5rem 1rem;
+        margin-bottom: 1rem;
+    }
+    
+    .format-category-card {
+        padding: 2rem 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .upload-area {
+        padding: 2rem 1rem;
+        min-height: 200px;
+    }
+    
+    .file-icon {
+        font-size: 3.5rem;
+    }
+    
+    .supported-formats {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .format-chip {
+        margin: 0.25rem;
+        padding: 0.5rem 0.75rem;
+        font-size: 0.85rem;
+    }
+    
+    .feature-card {
+        padding: 1.5rem;
+        margin-bottom: 1rem;
+    }
+    
+    .how-it-works .step-number {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-title {
+        font-size: 2rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+    
+    .upload-area {
+        padding: 1.5rem 0.75rem;
+        min-height: 180px;
+    }
+    
+    .file-icon {
+        font-size: 3rem;
+    }
+    
+    .stat-card {
+        padding: 1rem;
+    }
+    
+    .format-category-card {
+        padding: 1.5rem 1rem;
+    }
+    
+    .how-it-works .step-number {
+        width: 50px;
+        height: 50px;
+        font-size: 1.25rem;
+    }
+}
+
+@media (max-width: 768px) and (orientation: landscape) {
+    .hero-section {
+        padding: 1.5rem 0;
+    }
+    
+    .upload-area {
+        min-height: 150px;
+    }
+}
+</style>
+
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const uploadArea = document.getElementById('uploadArea');
@@ -132,27 +577,50 @@ document.addEventListener('DOMContentLoaded', function() {
     const formatSelection = document.getElementById('formatSelection');
     const targetFormat = document.getElementById('targetFormat');
     const convertSection = document.getElementById('convertSection');
+    const progressSection = document.getElementById('progressSection');
+    const progressBar = document.getElementById('progressBar');
+    const progressText = document.getElementById('progressText');
     const uploadForm = document.getElementById('uploadForm');
     const loadingOverlay = document.getElementById('loadingOverlay');
-    const progressSection = document.getElementById('progressSection');
+    const advancedOptions = document.getElementById('advancedOptions');
 
-    // File size formatter
-    function formatFileSize(bytes) {
-        if (bytes === 0) return '0 Bytes';
-        const k = 1024;
-        const sizes = ['Bytes', 'KB', 'MB', 'GB'];
-        const i = Math.floor(Math.log(bytes) / Math.log(k));
-        return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
-    }
+    // Enhanced format mappings with all supported formats
+    const formatMappings = {
+        // Image formats
+        'jpg': ['png', 'gif', 'bmp', 'tiff', 'webp', 'ico', 'svg', 'pdf'],
+        'jpeg': ['png', 'gif', 'bmp', 'tiff', 'webp', 'ico', 'svg', 'pdf'],
+        'png': ['jpg', 'jpeg', 'gif', 'bmp', 'tiff', 'webp', 'ico', 'svg', 'pdf'],
+        'gif': ['jpg', 'jpeg', 'png', 'bmp', 'tiff', 'webp', 'ico', 'svg', 'pdf'],
+        'bmp': ['jpg', 'jpeg', 'png', 'gif', 'tiff', 'webp', 'ico', 'svg', 'pdf'],
+        'tiff': ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'webp', 'ico', 'svg', 'pdf'],
+        'webp': ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'tiff', 'ico', 'svg', 'pdf'],
+        'ico': ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'tiff', 'webp', 'svg', 'pdf'],
+        'svg': ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'tiff', 'webp', 'ico', 'pdf'],
+        
+        // Document formats
+        'pdf': ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'tiff', 'webp', 'ico', 'svg', 'txt', 'docx', 'doc'],
+        'docx': ['pdf', 'doc', 'rtf', 'txt', 'html', 'md'],
+        'doc': ['pdf', 'docx', 'rtf', 'txt', 'html', 'md'],
+        'txt': ['pdf', 'docx', 'doc', 'rtf', 'html', 'md'],
+        'md': ['pdf', 'html', 'txt', 'docx', 'doc'],
+        'html': ['pdf', 'txt', 'md', 'docx', 'doc'],
+        'rtf': ['pdf', 'docx', 'doc', 'txt', 'html'],
+        
+        // Spreadsheet formats
+        'xlsx': ['pdf', 'xls', 'csv', 'json', 'xml'],
+        'xls': ['pdf', 'xlsx', 'csv', 'json', 'xml'],
+        'csv': ['pdf', 'xlsx', 'xls', 'json', 'xml'],
+        
+        // Presentation formats
+        'pptx': ['pdf', 'ppt'],
+        'ppt': ['pdf', 'pptx'],
+        
+        // Data formats
+        'json': ['pdf', 'txt', 'csv', 'xml'],
+        'xml': ['pdf', 'txt', 'csv', 'json']
+    };
 
-    // Upload area click handler
-    uploadArea.addEventListener('click', function() {
-        if (!fileInput.files.length) {
-            fileInput.click();
-        }
-    });
-
-    // Drag and drop handlers
+    // Drag and drop functionality
     uploadArea.addEventListener('dragover', function(e) {
         e.preventDefault();
         uploadArea.classList.add('dragover');
@@ -166,98 +634,93 @@ document.addEventListener('DOMContentLoaded', function() {
     uploadArea.addEventListener('drop', function(e) {
         e.preventDefault();
         uploadArea.classList.remove('dragover');
-        
         const files = e.dataTransfer.files;
         if (files.length > 0) {
-            fileInput.files = files;
             handleFileSelect(files[0]);
         }
     });
 
-    // File input change handler
+    uploadArea.addEventListener('click', function() {
+        fileInput.click();
+    });
+
     fileInput.addEventListener('change', function(e) {
         if (e.target.files.length > 0) {
             handleFileSelect(e.target.files[0]);
         }
     });
 
-    // Remove file handler
     removeFile.addEventListener('click', function() {
         resetForm();
     });
 
-    // Handle file selection
     function handleFileSelect(file) {
+        // Validate file size (100MB limit for enhanced converter)
+        if (file.size > 100 * 1024 * 1024) {
+            alert('File size must be less than 100MB');
+            return;
+        }
+
+        // Get file extension
+        const extension = file.name.split('.').pop().toLowerCase();
+        
+        // Check if format is supported
+        if (!formatMappings[extension]) {
+            alert('File format not supported. Please select a different file.');
+            return;
+        }
+
         // Display file info
         fileName.textContent = file.name;
         fileSize.textContent = formatFileSize(file.size);
         fileInfo.classList.remove('d-none');
-        
-        // Get supported formats for this file
-        fetchSupportedFormats(file.name);
+
+        // Show advanced options for image files
+        if (['jpg', 'jpeg', 'png', 'gif', 'bmp', 'tiff', 'webp', 'ico', 'svg'].includes(extension)) {
+            advancedOptions.style.display = 'block';
+        } else {
+            advancedOptions.style.display = 'none';
+        }
+
+        // Populate format options
+        populateFormatOptions(extension);
+
+        // Show format selection and convert button
+        formatSelection.style.display = 'block';
+        convertSection.style.display = 'block';
     }
 
-    // Fetch supported formats from server
-    function fetchSupportedFormats(filename) {
-        fetch(`/api/supported-formats/${encodeURIComponent(filename)}`)
-            .then(response => response.json())
-            .then(data => {
-                populateFormatOptions(data.formats);
-            })
-            .catch(error => {
-                console.error('Error fetching supported formats:', error);
-                // Show basic formats as fallback
-                populateFormatOptions(['pdf', 'jpg', 'png', 'txt']);
-            });
-    }
-
-    // Populate format selection dropdown
-    function populateFormatOptions(formats) {
+    function populateFormatOptions(inputFormat) {
         targetFormat.innerHTML = '<option value="">Select target format...</option>';
         
-        if (formats.length === 0) {
-            targetFormat.innerHTML += '<option value="" disabled>No supported formats found</option>';
-            return;
-        }
-
-        // Group formats by type
-        const formatGroups = {
-            'Images': ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'tiff', 'webp', 'ico'],
-            'Documents': ['pdf', 'docx', 'doc', 'txt', 'md', 'html', 'rtf'],
-            'Data': ['csv', 'json', 'xml']
-        };
-
-        for (const [groupName, groupFormats] of Object.entries(formatGroups)) {
-            const availableInGroup = formats.filter(fmt => groupFormats.includes(fmt.toLowerCase()));
-            
-            if (availableInGroup.length > 0) {
-                const optgroup = document.createElement('optgroup');
-                optgroup.label = groupName;
-                
-                availableInGroup.forEach(format => {
-                    const option = document.createElement('option');
-                    option.value = format.toLowerCase();
-                    option.textContent = format.toUpperCase();
-                    optgroup.appendChild(option);
-                });
-                
-                targetFormat.appendChild(optgroup);
-            }
-        }
-
-        formatSelection.style.display = 'block';
+        const supportedFormats = formatMappings[inputFormat] || [];
+        supportedFormats.forEach(format => {
+            const option = document.createElement('option');
+            option.value = format;
+            option.textContent = format.toUpperCase();
+            targetFormat.appendChild(option);
+        });
     }
 
-    // Target format change handler
-    targetFormat.addEventListener('change', function() {
-        if (this.value) {
-            convertSection.style.display = 'block';
-        } else {
-            convertSection.style.display = 'none';
-        }
-    });
+    function formatFileSize(bytes) {
+        if (bytes === 0) return '0 Bytes';
+        const k = 1024;
+        const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+        const i = Math.floor(Math.log(bytes) / Math.log(k));
+        return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+    }
 
-    // Form submission handler
+    function resetForm() {
+        fileInput.value = '';
+        fileInfo.classList.add('d-none');
+        formatSelection.style.display = 'none';
+        convertSection.style.display = 'none';
+        progressSection.style.display = 'none';
+        advancedOptions.style.display = 'none';
+        targetFormat.innerHTML = '<option value="">Select target format...</option>';
+    }
+
+    // Form submission
     uploadForm.addEventListener('submit', function(e) {
         e.preventDefault();
         
@@ -272,62 +735,51 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         // Show loading overlay
-        loadingOverlay.style.display = 'flex';
+        if (loadingOverlay) {
+            loadingOverlay.style.display = 'flex';
+        }
         
         // Submit form
         const formData = new FormData(uploadForm);
         
-        fetch('/upload', {
+        fetch('/api/upload', {
             method: 'POST',
             body: formData
         })
-        .then(response => {
-            if (response.ok) {
-                return response.text();
+        .then(response => response.json())
+        .then(data => {
+            if (loadingOverlay) {
+                loadingOverlay.style.display = 'none';
             }
-            throw new Error('Conversion failed');
-        })
-        .then(html => {
-            // Replace page content with response
-            document.open();
-            document.write(html);
-            document.close();
+            
+            if (data.success) {
+                // Redirect to success page or show success message
+                window.location.href = data.download_url;
+            } else {
+                alert('Conversion failed: ' + data.error);
+            }
         })
         .catch(error => {
+            if (loadingOverlay) {
+                loadingOverlay.style.display = 'none';
+            }
             console.error('Error:', error);
-            loadingOverlay.style.display = 'none';
             alert('An error occurred during conversion. Please try again.');
         });
     });
 
-    // Reset form
-    function resetForm() {
-        fileInput.value = '';
-        fileInfo.classList.add('d-none');
-        formatSelection.style.display = 'none';
-        convertSection.style.display = 'none';
-        targetFormat.innerHTML = '<option value="">Select target format...</option>';
-    }
-
-    // Simulate progress (since we don't have real progress tracking)
+    // Simulate progress (for visual feedback)
     function simulateProgress() {
         let progress = 0;
         const interval = setInterval(() => {
-            progress += Math.random() * 30;
-            if (progress > 90) progress = 90;
-            
-            const progressBar = document.getElementById('progressBar');
-            const progressText = document.getElementById('progressText');
-            
-            if (progressBar && progressText) {
-                progressBar.style.width = progress + '%';
-                progressText.textContent = Math.round(progress) + '%';
-            } else {
+            progress += Math.random() * 15;
+            if (progress >= 100) {
+                progress = 100;
                 clearInterval(interval);
             }
-        }, 500);
-        
-        return interval;
+            progressBar.style.width = progress + '%';
+            progressText.textContent = Math.round(progress) + '%';
+        }, 200);
     }
 });
 </script>

@@ -1,0 +1,21 @@
+ 2025-07-28 17:29:01,218 - werkzeug - INFO - 127.0.0.1 - - [28/Jul/2025 17:29:01] "GET /about HTTP/1.1" 200 -
+2025-07-28 17:29:01,291 - werkzeug - INFO - 127.0.0.1 - - [28/Jul/2025 17:29:01] "GET /static/images/logo.png HTTP/1.1" 200 -
+2025-07-28 17:29:01,848 - werkzeug - INFO - 127.0.0.1 - - [28/Jul/2025 17:29:01] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-07-28 17:29:05,167 - werkzeug - INFO - 127.0.0.1 - - [28/Jul/2025 17:29:05] "GET / HTTP/1.1" 200 -
+2025-07-28 17:29:05,223 - werkzeug - INFO - 127.0.0.1 - - [28/Jul/2025 17:29:05] "[36mGET /static/images/logo.png HTTP/1.1[0m" 304 -
+2025-07-28 17:29:06,385 - werkzeug - INFO - 127.0.0.1 - - [28/Jul/2025 17:29:06] "GET / HTTP/1.1" 200 -
+2025-07-28 17:29:06,441 - werkzeug - INFO - 127.0.0.1 - - [28/Jul/2025 17:29:06] "[36mGET /static/images/logo.png HTTP/1.1[0m" 304 -
+2025-07-28 17:30:27,172 - werkzeug - INFO - 127.0.0.1 - - [28/Jul/2025 17:30:27] "GET / HTTP/1.1" 200 -
+2025-07-28 17:30:27,267 - werkzeug - INFO - 127.0.0.1 - - [28/Jul/2025 17:30:27] "GET /static/images/logo.png HTTP/1.1" 200 -
+2025-07-28 17:30:28,596 - werkzeug - INFO - 127.0.0.1 - - [28/Jul/2025 17:30:28] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-07-28 17:30:32,023 - werkzeug - INFO - 127.0.0.1 - - [28/Jul/2025 17:30:32] "GET / HTTP/1.1" 200 -
+2025-07-28 17:30:32,047 - werkzeug - INFO - 127.0.0.1 - - [28/Jul/2025 17:30:32] "[36mGET /static/images/logo.png HTTP/1.1[0m" 304 -
+2025-07-28 17:31:53,702 - werkzeug - INFO - 127.0.0.1 - - [28/Jul/2025 17:31:53] "GET / HTTP/1.1" 200 -
+2025-07-28 17:31:53,748 - werkzeug - INFO - 127.0.0.1 - - [28/Jul/2025 17:31:53] "GET /static/images/logo.png HTTP/1.1" 200 -
+2025-07-28 17:31:54,100 - werkzeug - INFO - 127.0.0.1 - - [28/Jul/2025 17:31:54] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-07-28 17:32:21,524 - werkzeug - INFO - 127.0.0.1 - - [28/Jul/2025 17:32:21] "GET / HTTP/1.1" 200 -
+2025-07-28 17:32:21,565 - werkzeug - INFO - 127.0.0.1 - - [28/Jul/2025 17:32:21] "GET /static/images/logo.png HTTP/1.1" 200 -
+2025-07-28 17:32:21,789 - werkzeug - INFO - 127.0.0.1 - - [28/Jul/2025 17:32:21] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-07-28 17:34:19,854 - werkzeug - INFO - 127.0.0.1 - - [28/Jul/2025 17:34:19] "GET / HTTP/1.1" 200 -
+2025-07-28 17:34:19,916 - werkzeug - INFO - 127.0.0.1 - - [28/Jul/2025 17:34:19] "GET /static/images/logo.png HTTP/1.1" 200 -
+2025-07-28 17:34:20,219 - werkzeug - INFO - 127.0.0.1 - - [28/Jul/2025 17:34:20] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
