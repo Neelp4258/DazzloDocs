@@ -575,6 +575,12 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('html_to_pdf') }}">
+                            <i class="fas fa-code me-1"></i>
+                            HTML to PDF
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="{{ url_for('about') }}">
                             <i class="fas fa-info-circle me-1"></i>
                             About
@@ -618,6 +624,7 @@
                         <h6 class="gold-accent mb-3">Quick Links</h6>
                         <ul class="list-unstyled">
                             <li><a href="{{ url_for('index') }}">Home</a></li>
+                            <li><a href="{{ url_for('html_to_pdf') }}">HTML to PDF</a></li>
                             <li><a href="{{ url_for('about') }}">About</a></li>
                             <li><a href="#features">Features</a></li>
                         </ul>

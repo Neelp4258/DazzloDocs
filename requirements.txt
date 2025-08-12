@@ -1,6 +1,7 @@
 # Core Flask dependencies
 Flask==2.3.3
 Werkzeug==2.3.7
+gunicorn==21.2.0
 
 # Core file conversion libraries
 Pillow>=10.0.0

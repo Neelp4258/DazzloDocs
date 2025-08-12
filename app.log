@@ -19,3 +19,94 @@
 2025-07-28 17:34:19,854 - werkzeug - INFO - 127.0.0.1 - - [28/Jul/2025 17:34:19] "GET / HTTP/1.1" 200 -
 2025-07-28 17:34:19,916 - werkzeug - INFO - 127.0.0.1 - - [28/Jul/2025 17:34:19] "GET /static/images/logo.png HTTP/1.1" 200 -
 2025-07-28 17:34:20,219 - werkzeug - INFO - 127.0.0.1 - - [28/Jul/2025 17:34:20] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-07-28 17:34:50,818 - werkzeug - INFO - 127.0.0.1 - - [28/Jul/2025 17:34:50] "GET / HTTP/1.1" 200 -
+2025-07-28 17:34:50,866 - werkzeug - INFO - 127.0.0.1 - - [28/Jul/2025 17:34:50] "GET /static/images/logo.png HTTP/1.1" 200 -
+2025-07-28 17:34:51,168 - werkzeug - INFO - 127.0.0.1 - - [28/Jul/2025 17:34:51] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-07-28 17:35:02,804 - __main__ - INFO - Received file: Gemini_Generated_Image_suy8xpsuy8xpsuy8.png
+2025-07-28 17:35:02,804 - __main__ - INFO - Target format: pdf
+2025-07-28 17:35:02,805 - __main__ - INFO - Form data: {'image_quality': '95', 'pdf_resolution': '300', 'target_format': 'pdf'}
+2025-07-28 17:35:02,890 - utils.file_handler - INFO - File saved: f03b61e7-9a8f-43fa-ac0b-9118affbb1c7_Gemini_Generated_Image_suy8xpsuy8xpsuy8.png
+2025-07-28 17:35:02,893 - __main__ - INFO - Validating file: uploads\f03b61e7-9a8f-43fa-ac0b-9118affbb1c7_Gemini_Generated_Image_suy8xpsuy8xpsuy8.png
+2025-07-28 17:35:02,896 - __main__ - INFO - Validation result: {'valid': True, 'file_size': 4817117, 'file_size_formatted': '4.59 MB', 'extension': 'png', 'category': 'image', 'max_size': '100.0 MB'}
+2025-07-28 17:35:02,897 - __main__ - INFO - Starting conversion: Gemini_Generated_Image_suy8xpsuy8xpsuy8.png -> pdf
+2025-07-28 17:35:02,898 - __main__ - INFO - Input path: uploads\f03b61e7-9a8f-43fa-ac0b-9118affbb1c7_Gemini_Generated_Image_suy8xpsuy8xpsuy8.png
+2025-07-28 17:35:02,898 - __main__ - INFO - Output path: converted\f03b61e7-9a8f-43fa-ac0b-9118affbb1c7_converted_Gemini_Generated_Image_suy8xpsuy8xpsuy8.pdf
+2025-07-28 17:35:02,899 - __main__ - INFO - Input file exists: True
+2025-07-28 17:35:02,900 - __main__ - INFO - Input file size: 4817117
+2025-07-28 17:35:02,903 - utils.converter - INFO - Converting png to pdf
+2025-07-28 17:35:07,726 - __main__ - INFO - Conversion result: {'success': True, 'output_path': 'converted\\f03b61e7-9a8f-43fa-ac0b-9118affbb1c7_converted_Gemini_Generated_Image_suy8xpsuy8xpsuy8.pdf'}
+2025-07-28 17:35:07,729 - utils.file_handler - INFO - File deleted: uploads\f03b61e7-9a8f-43fa-ac0b-9118affbb1c7_Gemini_Generated_Image_suy8xpsuy8xpsuy8.png
+2025-07-28 17:35:07,730 - __main__ - INFO - Conversion successful: f03b61e7-9a8f-43fa-ac0b-9118affbb1c7_converted_Gemini_Generated_Image_suy8xpsuy8xpsuy8.pdf
+2025-07-28 17:35:07,733 - werkzeug - INFO - 127.0.0.1 - - [28/Jul/2025 17:35:07] "POST /api/upload HTTP/1.1" 200 -
+2025-07-28 17:35:07,780 - werkzeug - INFO - 127.0.0.1 - - [28/Jul/2025 17:35:07] "GET /download/f03b61e7-9a8f-43fa-ac0b-9118affbb1c7_converted_Gemini_Generated_Image_suy8xpsuy8xpsuy8.pdf HTTP/1.1" 200 -
+2025-08-01 08:45:43,182 - utils.converter - INFO - Universal Converter initialized - PIL: True, PyMuPDF: True, ReportLab: True, DOCX: True
+2025-08-01 08:45:43,185 - utils.cleanup - INFO - Cleanup thread started
+2025-08-01 08:45:43,223 - utils.cleanup - INFO - Cleaned up 9 old files
+2025-08-01 08:45:43,415 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.5:5000
+2025-08-01 08:45:43,416 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-08-01 08:45:43,420 - werkzeug - INFO -  * Restarting with stat
+2025-08-01 08:45:44,286 - utils.converter - INFO - Universal Converter initialized - PIL: True, PyMuPDF: True, ReportLab: True, DOCX: True
+2025-08-01 08:45:44,288 - utils.cleanup - INFO - Cleanup thread started
+2025-08-01 08:45:44,322 - werkzeug - WARNING -  * Debugger is active!
+2025-08-01 08:45:44,328 - werkzeug - INFO -  * Debugger PIN: 592-236-368
+2025-08-01 08:45:50,908 - werkzeug - INFO - 127.0.0.1 - - [01/Aug/2025 08:45:50] "GET / HTTP/1.1" 200 -
+2025-08-01 08:45:51,055 - werkzeug - INFO - 127.0.0.1 - - [01/Aug/2025 08:45:51] "GET /static/images/logo.png HTTP/1.1" 200 -
+2025-08-01 08:45:51,274 - werkzeug - INFO - 127.0.0.1 - - [01/Aug/2025 08:45:51] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-08-01 08:46:17,998 - __main__ - INFO - Received file: logo.png
+2025-08-01 08:46:17,999 - __main__ - INFO - Target format: svg
+2025-08-01 08:46:18,000 - __main__ - INFO - Form data: {'image_quality': '95', 'pdf_resolution': '300', 'target_format': 'svg'}
+2025-08-01 08:46:18,003 - utils.file_handler - INFO - File saved: 47b73c4f-e08f-474b-bb98-2d004d546fb0_logo.png
+2025-08-01 08:46:18,005 - __main__ - INFO - Validating file: uploads\47b73c4f-e08f-474b-bb98-2d004d546fb0_logo.png
+2025-08-01 08:46:18,006 - __main__ - INFO - Validation result: {'valid': True, 'file_size': 207016, 'file_size_formatted': '202.16 KB', 'extension': 'png', 'category': 'image', 'max_size': '100.0 MB'}
+2025-08-01 08:46:18,008 - __main__ - INFO - Starting conversion: logo.png -> svg
+2025-08-01 08:46:18,008 - __main__ - INFO - Input path: uploads\47b73c4f-e08f-474b-bb98-2d004d546fb0_logo.png
+2025-08-01 08:46:18,009 - __main__ - INFO - Output path: converted\47b73c4f-e08f-474b-bb98-2d004d546fb0_converted_logo.svg
+2025-08-01 08:46:18,010 - __main__ - INFO - Input file exists: True
+2025-08-01 08:46:18,010 - __main__ - INFO - Input file size: 207016
+2025-08-01 08:46:18,011 - utils.converter - INFO - Converting png to svg
+2025-08-01 08:46:18,243 - __main__ - INFO - Conversion result: {'success': True, 'output_path': 'converted\\47b73c4f-e08f-474b-bb98-2d004d546fb0_converted_logo.svg'}
+2025-08-01 08:46:18,245 - utils.file_handler - INFO - File deleted: uploads\47b73c4f-e08f-474b-bb98-2d004d546fb0_logo.png
+2025-08-01 08:46:18,247 - __main__ - INFO - Conversion successful: 47b73c4f-e08f-474b-bb98-2d004d546fb0_converted_logo.svg
+2025-08-01 08:46:18,249 - werkzeug - INFO - 127.0.0.1 - - [01/Aug/2025 08:46:18] "POST /api/upload HTTP/1.1" 200 -
+2025-08-01 08:46:18,322 - werkzeug - INFO - 127.0.0.1 - - [01/Aug/2025 08:46:18] "GET /download/47b73c4f-e08f-474b-bb98-2d004d546fb0_converted_logo.svg HTTP/1.1" 200 -
+2025-08-12 11:56:30,108 - utils.converter - INFO - Universal Converter initialized - PIL: True, PyMuPDF: True, ReportLab: True, DOCX: True
+2025-08-12 11:56:30,111 - utils.cleanup - INFO - Cleanup thread started
+2025-08-12 11:56:30,119 - utils.cleanup - INFO - Cleaned up 1 old files
+2025-08-12 11:57:32,351 - utils.converter - INFO - Universal Converter initialized - PIL: True, PyMuPDF: True, ReportLab: True, DOCX: True
+2025-08-12 11:57:32,352 - utils.cleanup - INFO - Cleanup thread started
+2025-08-12 11:57:32,417 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5001
+ * Running on http://192.168.1.5:5001
+2025-08-12 11:57:32,418 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-08-12 11:57:32,421 - werkzeug - INFO -  * Restarting with stat
+2025-08-12 11:57:33,704 - utils.converter - INFO - Universal Converter initialized - PIL: True, PyMuPDF: True, ReportLab: True, DOCX: True
+2025-08-12 11:57:33,705 - utils.cleanup - INFO - Cleanup thread started
+2025-08-12 11:57:33,734 - werkzeug - WARNING -  * Debugger is active!
+2025-08-12 11:57:33,741 - werkzeug - INFO -  * Debugger PIN: 592-236-368
+2025-08-12 11:57:36,106 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 11:57:36] "GET / HTTP/1.1" 200 -
+2025-08-12 11:57:36,792 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 11:57:36] "GET /static/images/logo.png HTTP/1.1" 200 -
+2025-08-12 11:57:37,376 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 11:57:37] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-08-12 11:57:41,810 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 11:57:41] "GET /html-to-pdf HTTP/1.1" 200 -
+2025-08-12 11:57:41,885 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 11:57:41] "[36mGET /static/images/logo.png HTTP/1.1[0m" 304 -
+2025-08-12 11:58:13,438 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 11:58:13] "[35m[1mPOST /api/html-to-pdf HTTP/1.1[0m" 500 -
+2025-08-12 11:59:17,782 - utils.converter - INFO - Universal Converter initialized - PIL: True, PyMuPDF: True, ReportLab: True, DOCX: True
+2025-08-12 11:59:17,785 - utils.cleanup - INFO - Cleanup thread started
+2025-08-12 11:59:17,838 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5001
+ * Running on http://192.168.1.5:5001
+2025-08-12 11:59:17,839 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-08-12 11:59:17,842 - werkzeug - INFO -  * Restarting with stat
+2025-08-12 11:59:19,256 - utils.converter - INFO - Universal Converter initialized - PIL: True, PyMuPDF: True, ReportLab: True, DOCX: True
+2025-08-12 11:59:19,258 - utils.cleanup - INFO - Cleanup thread started
+2025-08-12 11:59:19,291 - werkzeug - WARNING -  * Debugger is active!
+2025-08-12 11:59:19,296 - werkzeug - INFO -  * Debugger PIN: 592-236-368
+2025-08-12 11:59:20,926 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 11:59:20] "GET / HTTP/1.1" 200 -
+2025-08-12 11:59:21,050 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 11:59:21] "[36mGET /static/images/logo.png HTTP/1.1[0m" 304 -
+2025-08-12 11:59:22,475 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 11:59:22] "GET /html-to-pdf HTTP/1.1" 200 -
+2025-08-12 11:59:22,524 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 11:59:22] "[36mGET /static/images/logo.png HTTP/1.1[0m" 304 -
+2025-08-12 11:59:33,885 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 11:59:33] "[35m[1mPOST /api/html-to-pdf HTTP/1.1[0m" 500 -

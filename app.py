@@ -8,6 +8,9 @@ Enhanced for maximum compatibility and features.
 import os
 import uuid
 import logging
+import subprocess
+import json
+import requests
 from datetime import datetime
 from pathlib import Path
 from flask import Flask, request, jsonify, send_file, render_template, flash, redirect, url_for
@@ -33,7 +36,7 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 # Initialize Flask app
-app = Flask(__name__, static_folder='static')
+app = Flask(__name__, static_folder='static', template_folder='Templates')
 app.config.from_object(Config)
 
 # Initialize components
@@ -54,6 +57,151 @@ def index():
 def about():
     """About page"""
     return render_template('about.html')
+
+@app.route('/html-to-pdf')
+def html_to_pdf():
+    """HTML to PDF converter page"""
+    return render_template('html_to_pdf.html')
+
+@app.route('/api/html-to-pdf', methods=['POST'])
+def api_html_to_pdf():
+    """API endpoint for HTML to PDF conversion"""
+    try:
+        data = request.get_json()
+        
+        if not data:
+            return jsonify({
+                'success': False,
+                'error': 'No data provided'
+            }), 400
+        
+        html_content = data.get('html')
+        letterhead_type = data.get('letterheadType', 'trivanta')
+        format_type = data.get('format', 'A4')
+        landscape = data.get('landscape', False)
+        
+        if not html_content:
+            return jsonify({
+                'success': False,
+                'error': 'HTML content is required'
+            }), 400
+        
+        # Generate unique filename
+        filename = f"html_converted_{datetime.now().strftime('%Y%m%d_%H%M%S')}.pdf"
+        output_path = os.path.join(app.config['CONVERTED_FOLDER'], filename)
+        
+        # Call the Node.js converter
+        result = convert_html_to_pdf_via_nodejs(html_content, output_path, {
+            'letterheadType': letterhead_type,
+            'format': format_type,
+            'landscape': landscape
+        })
+        
+        if result['success']:
+            return jsonify({
+                'success': True,
+                'filename': filename,
+                'fileSize': result.get('fileSize', 0),
+                'pageCount': result.get('pageCount', 1),
+                'downloadUrl': url_for('download_file', filename=filename)
+            })
+        else:
+            return jsonify({
+                'success': False,
+                'error': result.get('error', 'Conversion failed')
+            }), 500
+            
+    except Exception as e:
+        logger.error(f"HTML to PDF conversion error: {str(e)}")
+        return jsonify({
+            'success': False,
+            'error': f'Conversion failed: {str(e)}'
+        }), 500
+
+def convert_html_to_pdf_via_nodejs(html_content, output_path, options):
+    """Convert HTML to PDF using the Node.js converter"""
+    try:
+        # Path to the Node.js converter
+        converter_path = os.path.join(os.path.dirname(__file__), 'html_converter', 'converter.js')
+        
+        # Prepare the command
+        cmd = [
+            'node', 
+            '-e',
+            f'''
+            const UltimateHTMLToPDFConverter = require('./converter.js');
+            
+            async function convert() {{
+                try {{
+                    const converter = new UltimateHTMLToPDFConverter();
+                    await converter.initialize();
+                    
+                    const result = await converter.convertHTMLToPDF(
+                        `{html_content.replace("'", "\\'").replace('"', '\\"')}`,
+                        '{output_path}',
+                        {{
+                            format: '{options.get("format", "A4")}',
+                            landscape: {str(options.get("landscape", False)).lower()},
+                            margin: {{ top: '12mm', right: '10mm', bottom: '14mm', left: '10mm' }},
+                            scale: 1.0,
+                            letterhead: true,
+                            letterheadType: '{options.get("letterheadType", "trivanta")}'
+                        }}
+                    );
+                    
+                    console.log(JSON.stringify({{
+                        success: true,
+                        fileSize: result.fileSize || 0,
+                        pageCount: result.pageCount || 1
+                    }}));
+                    
+                    await converter.close();
+                }} catch (error) {{
+                    console.log(JSON.stringify({{
+                        success: false,
+                        error: error.message
+                    }}));
+                }}
+            }}
+            
+            convert();
+            '''
+        ]
+        
+        # Run the conversion
+        result = subprocess.run(
+            cmd,
+            cwd=os.path.join(os.path.dirname(__file__), 'html_converter'),
+            capture_output=True,
+            text=True,
+            timeout=60
+        )
+        
+        if result.returncode == 0:
+            try:
+                output = json.loads(result.stdout.strip())
+                return output
+            except json.JSONDecodeError:
+                return {
+                    'success': False,
+                    'error': 'Failed to parse converter output'
+                }
+        else:
+            return {
+                'success': False,
+                'error': result.stderr or 'Conversion failed'
+            }
+            
+    except subprocess.TimeoutExpired:
+        return {
+            'success': False,
+            'error': 'Conversion timed out'
+        }
+    except Exception as e:
+        return {
+            'success': False,
+            'error': str(e)
+        }
 
 @app.route('/api/upload', methods=['POST'])
 def api_upload():

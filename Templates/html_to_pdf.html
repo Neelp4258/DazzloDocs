@@ -1,0 +1,561 @@
+{% extends "base.html" %}
+
+{% block title %}HTML to PDF Converter - DazzloDocs Converter{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<div class="hero-section text-center mb-5 fade-in">
+    <div class="container">
+        <h1 class="section-title display-4 mb-4">
+            <span class="text-gradient">HTML to PDF</span> Converter
+        </h1>
+        <p class="section-subtitle lead mb-5">
+            Transform your HTML content into professional PDF documents with perfect formatting and letterhead options
+        </p>
+        
+        <!-- Hero Stats -->
+        <div class="row justify-content-center mb-5">
+            <div class="col-md-3 col-6 mb-3">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3 class="gold-accent">HTML</h3>
+                    <p class="text-muted">Input Format</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-6 mb-3">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-file-pdf"></i>
+                    </div>
+                    <h3 class="gold-accent">PDF</h3>
+                    <p class="text-muted">Output Format</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-6 mb-3">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3 class="gold-accent">Perfect</h3>
+                    <p class="text-muted">CSS Rendering</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-6 mb-3">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-heading"></i>
+                    </div>
+                    <h3 class="gold-accent">Letterhead</h3>
+                    <p class="text-muted">Professional</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Main Converter Card -->
+<div class="row justify-content-center mb-5">
+    <div class="col-lg-10">
+        <div class="card converter-card slide-up">
+            <div class="card-header text-center">
+                <h2 class="mb-0">
+                    <i class="fas fa-code me-2"></i>
+                    HTML to PDF Converter
+                </h2>
+                <p class="mb-0 mt-2 opacity-90">Paste your HTML code or upload an HTML file</p>
+            </div>
+            <div class="card-body p-5">
+                <form id="htmlToPdfForm">
+                    <!-- Input Method Tabs -->
+                    <ul class="nav nav-tabs mb-4" id="inputTabs" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="html-tab" data-bs-toggle="tab" data-bs-target="#html" type="button" role="tab">
+                                <i class="fas fa-code me-2"></i>HTML Code
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="file-tab" data-bs-toggle="tab" data-bs-target="#file" type="button" role="tab">
+                                <i class="fas fa-file-upload me-2"></i>Upload File
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="url-tab" data-bs-toggle="tab" data-bs-target="#url" type="button" role="tab">
+                                <i class="fas fa-link me-2"></i>From URL
+                            </button>
+                        </li>
+                    </ul>
+
+                    <!-- Tab Content -->
+                    <div class="tab-content" id="inputTabsContent">
+                        <!-- HTML Code Tab -->
+                        <div class="tab-pane fade show active" id="html" role="tabpanel">
+                            <div class="mb-4">
+                                <label for="htmlContent" class="form-label fw-bold">
+                                    <i class="fas fa-code me-2"></i>HTML Content
+                                </label>
+                                <textarea 
+                                    class="form-control" 
+                                    id="htmlContent" 
+                                    rows="12" 
+                                    placeholder="Paste your HTML code here...&#10;&#10;Example:&#10;&lt;html&gt;&#10;  &lt;head&gt;&#10;    &lt;title&gt;My Document&lt;/title&gt;&#10;  &lt;/head&gt;&#10;  &lt;body&gt;&#10;    &lt;h1&gt;Hello World&lt;/h1&gt;&#10;    &lt;p&gt;This is my content.&lt;/p&gt;&#10;  &lt;/body&gt;&#10;&lt;/html&gt;"
+                                    style="font-family: 'Courier New', monospace; font-size: 14px;"
+                                ></textarea>
+                            </div>
+                        </div>
+
+                        <!-- File Upload Tab -->
+                        <div class="tab-pane fade" id="file" role="tabpanel">
+                            <div class="upload-area mb-4" id="uploadArea">
+                                <div class="file-icon">
+                                    <i class="fas fa-file-upload"></i>
+                                </div>
+                                <h4 class="mb-3">Drop your HTML file here or click to browse</h4>
+                                <p class="text-muted mb-4">Supports .html and .htm files</p>
+                                <input type="file" id="htmlFileInput" class="d-none" accept=".html,.htm">
+                            </div>
+                            <div id="fileInfo" class="d-none">
+                                <div class="alert alert-info">
+                                    <div class="d-flex align-items-center">
+                                        <i class="fas fa-file me-3 fs-3"></i>
+                                        <div class="flex-grow-1">
+                                            <strong id="fileName"></strong><br>
+                                            <small class="text-muted" id="fileSize"></small>
+                                        </div>
+                                        <button type="button" class="btn btn-sm btn-outline-secondary" id="removeFile">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- URL Tab -->
+                        <div class="tab-pane fade" id="url" role="tabpanel">
+                            <div class="mb-4">
+                                <label for="urlInput" class="form-label fw-bold">
+                                    <i class="fas fa-link me-2"></i>Website URL
+                                </label>
+                                <input 
+                                    type="url" 
+                                    class="form-control" 
+                                    id="urlInput" 
+                                    placeholder="https://example.com"
+                                >
+                                <div class="form-text">Enter the URL of the webpage you want to convert to PDF</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Letterhead Selection -->
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">
+                            <i class="fas fa-heading me-2"></i>Letterhead Options
+                        </label>
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <div class="letterhead-option">
+                                    <input type="radio" class="btn-check" name="letterheadType" id="noLetterhead" value="none" checked>
+                                    <label class="btn btn-outline-secondary w-100" for="noLetterhead">
+                                        <i class="fas fa-times-circle mb-2"></i>
+                                        <div class="fw-bold">No Letterhead</div>
+                                        <small class="text-muted">Plain document</small>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <div class="letterhead-option">
+                                    <input type="radio" class="btn-check" name="letterheadType" id="trivantaLetterhead" value="trivanta">
+                                    <label class="btn btn-outline-secondary w-100" for="trivantaLetterhead">
+                                        <i class="fas fa-building mb-2"></i>
+                                        <div class="fw-bold">Trivanta Edge</div>
+                                        <small class="text-muted">Professional blue theme</small>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <div class="letterhead-option">
+                                    <input type="radio" class="btn-check" name="letterheadType" id="dazzloLetterhead" value="dazzlo">
+                                    <label class="btn btn-outline-secondary w-100" for="dazzloLetterhead">
+                                        <i class="fas fa-crown mb-2"></i>
+                                        <div class="fw-bold">Dazzlo Enterprises</div>
+                                        <small class="text-muted">Premium gold theme</small>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Advanced Options -->
+                    <div class="mb-4">
+                        <button class="btn btn-link p-0 mb-3" type="button" data-bs-toggle="collapse" data-bs-target="#advancedOptions">
+                            <i class="fas fa-cog me-2"></i>Advanced Options
+                        </button>
+                        <div class="collapse" id="advancedOptions">
+                            <div class="card card-body bg-light">
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="formatSelect" class="form-label">Page Format</label>
+                                        <select class="form-select" id="formatSelect">
+                                            <option value="A4">A4 (Default)</option>
+                                            <option value="A3">A3</option>
+                                            <option value="Letter">Letter</option>
+                                            <option value="Legal">Legal</option>
+                                            <option value="Tabloid">Tabloid</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="orientationSelect" class="form-label">Orientation</label>
+                                        <select class="form-select" id="orientationSelect">
+                                            <option value="portrait">Portrait</option>
+                                            <option value="landscape">Landscape</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Convert Button -->
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary btn-lg px-5" id="convertBtn">
+                            <i class="fas fa-magic me-2"></i>
+                            Convert to PDF
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Progress Section -->
+                <div id="progressSection" class="d-none mt-4">
+                    <div class="progress mb-3" style="height: 8px;">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 0%"></div>
+                    </div>
+                    <p class="text-center text-muted mb-0">
+                        <i class="fas fa-spinner fa-spin me-2"></i>
+                        Converting your HTML to PDF...
+                    </p>
+                </div>
+
+                <!-- Result Section -->
+                <div id="resultSection" class="d-none mt-4">
+                    <div class="alert alert-success">
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-check-circle me-3 fs-3"></i>
+                            <div class="flex-grow-1">
+                                <h5 class="mb-1">Conversion Successful!</h5>
+                                <p class="mb-2" id="resultInfo"></p>
+                                <a href="#" class="btn btn-success" id="downloadBtn">
+                                    <i class="fas fa-download me-2"></i>
+                                    Download PDF
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Error Section -->
+                <div id="errorSection" class="d-none mt-4">
+                    <div class="alert alert-danger">
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-exclamation-triangle me-3 fs-3"></i>
+                            <div class="flex-grow-1">
+                                <h5 class="mb-1">Conversion Failed</h5>
+                                <p class="mb-0" id="errorMessage"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Features Section -->
+<div class="row justify-content-center mb-5">
+    <div class="col-lg-10">
+        <div class="card features-card">
+            <div class="card-header text-center">
+                <h3 class="mb-0">
+                    <i class="fas fa-star me-2"></i>
+                    Why Choose Our HTML to PDF Converter?
+                </h3>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-palette"></i>
+                            </div>
+                            <h5>Perfect CSS Rendering</h5>
+                            <p class="text-muted">All your CSS styles, layouts, and formatting are preserved exactly as designed.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-heading"></i>
+                            </div>
+                            <h5>Professional Letterheads</h5>
+                            <p class="text-muted">Add beautiful, customizable letterheads to make your documents stand out.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-file-alt"></i>
+                            </div>
+                            <h5>Multiple Input Methods</h5>
+                            <p class="text-muted">Paste HTML code, upload files, or convert directly from website URLs.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <h5>Secure & Private</h5>
+                            <p class="text-muted">Your content is processed securely and never stored permanently.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.letterhead-option .btn {
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--cream-dark);
+    transition: var(--transition);
+}
+
+.letterhead-option .btn-check:checked + .btn {
+    background: linear-gradient(135deg, var(--primary-gold), var(--secondary-gold));
+    border-color: var(--primary-gold);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: var(--box-shadow);
+}
+
+.feature-item {
+    text-align: center;
+    padding: 2rem;
+}
+
+.feature-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, var(--primary-gold), var(--secondary-gold));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    color: white;
+    font-size: 2rem;
+    box-shadow: var(--box-shadow);
+}
+
+.features-card {
+    border: none;
+    box-shadow: var(--box-shadow);
+    border-radius: var(--border-radius);
+}
+
+#htmlContent {
+    border: 2px solid var(--cream-dark);
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+}
+
+#htmlContent:focus {
+    border-color: var(--primary-gold);
+    box-shadow: 0 0 0 0.2rem rgba(212, 175, 55, 0.25);
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('htmlToPdfForm');
+    const convertBtn = document.getElementById('convertBtn');
+    const progressSection = document.getElementById('progressSection');
+    const resultSection = document.getElementById('resultSection');
+    const errorSection = document.getElementById('errorSection');
+    const uploadArea = document.getElementById('uploadArea');
+    const htmlFileInput = document.getElementById('htmlFileInput');
+    const fileInfo = document.getElementById('fileInfo');
+    const fileName = document.getElementById('fileName');
+    const fileSize = document.getElementById('fileSize');
+    const removeFile = document.getElementById('removeFile');
+
+    let currentFile = null;
+
+    // File upload handling
+    uploadArea.addEventListener('click', () => htmlFileInput.click());
+    uploadArea.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        uploadArea.classList.add('drag-over');
+    });
+    uploadArea.addEventListener('dragleave', () => {
+        uploadArea.classList.remove('drag-over');
+    });
+    uploadArea.addEventListener('drop', (e) => {
+        e.preventDefault();
+        uploadArea.classList.remove('drag-over');
+        const files = e.dataTransfer.files;
+        if (files.length > 0) {
+            handleFileSelect(files[0]);
+        }
+    });
+
+    htmlFileInput.addEventListener('change', (e) => {
+        if (e.target.files.length > 0) {
+            handleFileSelect(e.target.files[0]);
+        }
+    });
+
+    removeFile.addEventListener('click', () => {
+        currentFile = null;
+        htmlFileInput.value = '';
+        fileInfo.classList.add('d-none');
+        uploadArea.classList.remove('d-none');
+    });
+
+    function handleFileSelect(file) {
+        if (!file.name.toLowerCase().endsWith('.html') && !file.name.toLowerCase().endsWith('.htm')) {
+            alert('Please select an HTML file (.html or .htm)');
+            return;
+        }
+
+        currentFile = file;
+        fileName.textContent = file.name;
+        fileSize.textContent = formatFileSize(file.size);
+        fileInfo.classList.remove('d-none');
+        uploadArea.classList.add('d-none');
+    }
+
+    function formatFileSize(bytes) {
+        if (bytes === 0) return '0 Bytes';
+        const k = 1024;
+        const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+        const i = Math.floor(Math.log(bytes) / Math.log(k));
+        return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+    }
+
+    // Form submission
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        // Get input data
+        const activeTab = document.querySelector('.tab-pane.active');
+        let htmlContent = '';
+
+        if (activeTab.id === 'html') {
+            htmlContent = document.getElementById('htmlContent').value.trim();
+            if (!htmlContent) {
+                alert('Please enter HTML content');
+                return;
+            }
+        } else if (activeTab.id === 'file') {
+            if (!currentFile) {
+                alert('Please select an HTML file');
+                return;
+            }
+            htmlContent = await readFileAsText(currentFile);
+        } else if (activeTab.id === 'url') {
+            const url = document.getElementById('urlInput').value.trim();
+            if (!url) {
+                alert('Please enter a URL');
+                return;
+            }
+            // For URL, we'll need to fetch the HTML content
+            try {
+                const response = await fetch('/api/fetch-url', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ url: url })
+                });
+                const data = await response.json();
+                if (data.success) {
+                    htmlContent = data.html;
+                } else {
+                    throw new Error(data.error);
+                }
+            } catch (error) {
+                alert('Failed to fetch URL: ' + error.message);
+                return;
+            }
+        }
+
+        // Get options
+        const letterheadType = document.querySelector('input[name="letterheadType"]:checked').value;
+        const format = document.getElementById('formatSelect').value;
+        const landscape = document.getElementById('orientationSelect').value === 'landscape';
+
+        // Show progress
+        convertBtn.disabled = true;
+        progressSection.classList.remove('d-none');
+        resultSection.classList.add('d-none');
+        errorSection.classList.add('d-none');
+
+        // Simulate progress
+        const progressBar = progressSection.querySelector('.progress-bar');
+        let progress = 0;
+        const progressInterval = setInterval(() => {
+            progress += Math.random() * 15;
+            if (progress > 90) progress = 90;
+            progressBar.style.width = progress + '%';
+        }, 200);
+
+        try {
+            const response = await fetch('/api/html-to-pdf', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    html: htmlContent,
+                    letterheadType: letterheadType,
+                    format: format,
+                    landscape: landscape
+                })
+            });
+
+            const result = await response.json();
+            clearInterval(progressInterval);
+            progressBar.style.width = '100%';
+
+            if (result.success) {
+                document.getElementById('resultInfo').textContent = 
+                    `File size: ${formatFileSize(result.fileSize)} | Pages: ${result.pageCount}`;
+                document.getElementById('downloadBtn').href = result.downloadUrl;
+                resultSection.classList.remove('d-none');
+            } else {
+                throw new Error(result.error);
+            }
+        } catch (error) {
+            clearInterval(progressInterval);
+            document.getElementById('errorMessage').textContent = error.message;
+            errorSection.classList.remove('d-none');
+        } finally {
+            convertBtn.disabled = false;
+            progressSection.classList.add('d-none');
+        }
+    });
+
+    function readFileAsText(file) {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onload = (e) => resolve(e.target.result);
+            reader.onerror = (e) => reject(e);
+            reader.readAsText(file);
+        });
+    }
+});
+</script>
+{% endblock %}

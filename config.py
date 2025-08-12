@@ -11,7 +11,7 @@ class Config:
     # Server settings
     DEBUG = os.environ.get('DEBUG', 'True').lower() == 'true'
     HOST = os.environ.get('HOST', '0.0.0.0')
-    PORT = int(os.environ.get('PORT', 5000))
+    PORT = int(os.environ.get('PORT', 5001))
     
     # File paths
     UPLOAD_FOLDER = os.environ.get('UPLOAD_FOLDER', 'uploads')

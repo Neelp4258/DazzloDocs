@@ -80,7 +80,7 @@ def print_pandoc_instructions():
 def create_directories():
     """Create necessary directories."""
     print("\n📁 Creating directories...")
-    directories = ['uploads', 'converted', 'templates']
+    directories = ['uploads', 'converted', 'Templates']
     
     for directory in directories:
         Path(directory).mkdir(exist_ok=True)
@@ -91,12 +91,12 @@ def check_template_files():
     """Check if template files exist."""
     print("\n📄 Checking template files...")
     required_templates = [
-        'templates/base.html',
-        'templates/index.html', 
-        'templates/success.html',
-        'templates/about.html',
-        'templates/404.html',
-        'templates/500.html'
+        'Templates/base.html',
+        'Templates/index.html', 
+        'Templates/success.html',
+        'Templates/about.html',
+        'Templates/404.html',
+        'Templates/500.html'
     ]
     
     missing_templates = []
