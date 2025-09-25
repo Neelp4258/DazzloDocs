@@ -1,0 +1,102 @@
+:root {
+  --bg: #0b1020;
+  --panel: #11162a;
+  --muted: #8a93ad;
+  --text: #e6eaf4;
+  --primary: #4f8cff;
+  --primary-pressed: #3b6bca;
+  --border: #1f2742;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica Neue, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+}
+
+.app-header {
+  padding: 24px 20px 8px 20px;
+  border-bottom: 1px solid var(--border);
+}
+.app-header h1 { margin: 0; font-size: 24px; }
+.app-header .subtitle { margin: 6px 0 0; color: var(--muted); font-size: 14px; }
+
+.container {
+  display: grid;
+  grid-template-columns: 480px 1fr;
+  gap: 16px;
+  padding: 16px;
+}
+
+.controls {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+}
+
+.field { margin-bottom: 14px; }
+.field label { display: block; font-size: 12px; color: var(--muted); margin-bottom: 6px; }
+.field input[type="text"], .field select, .field textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: #0d1326;
+  color: var(--text);
+  outline: none;
+}
+.field small { color: var(--muted); display: inline-block; margin-left: 8px; }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px 12px;
+}
+
+.actions { display: flex; gap: 8px; }
+button {
+  padding: 10px 14px;
+  border-radius: 8px;
+  background: #182243;
+  color: var(--text);
+  border: 1px solid var(--border);
+  cursor: pointer;
+}
+button.primary { background: var(--primary); border-color: var(--primary); color: white; }
+button.primary:active { background: var(--primary-pressed); }
+
+.preview {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+}
+.preview h2 { margin: 0 0 12px; font-size: 16px; color: var(--muted); }
+#previewFrame {
+  width: 100%;
+  height: 70vh;
+  border: 1px dashed var(--border);
+  border-radius: 8px;
+  background: #0d1326;
+}
+
+.app-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 12px 16px 20px;
+  color: var(--muted);
+}
+.app-footer a { color: var(--primary); text-decoration: none; }
+
+@media (max-width: 980px) {
+  .container { grid-template-columns: 1fr; }
+  #previewFrame { height: 55vh; }
+}
+
